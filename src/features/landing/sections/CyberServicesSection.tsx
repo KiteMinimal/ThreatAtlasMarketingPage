@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { fadeIn, hoverEffect } from "./Animations";
-import ServiceModal from "./ServicesModal";
+import { fadeIn, hoverEffect } from "@/components/Animations";
+import ServiceModal from "@/features/landing/components/ServicesModal";
 
 const services = [
   {

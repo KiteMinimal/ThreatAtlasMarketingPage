@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { fadeIn } from "./Animations";
+import { fadeIn } from "@/components/Animations";
 
 const testimonials = [
   {

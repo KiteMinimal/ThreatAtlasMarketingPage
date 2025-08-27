@@ -56,7 +56,7 @@ const plans: Plan[] = [
   },
 ];
 
-const PricingPlans: React.FC = () => {
+export default function PricingPlans() {
   return (
     <section
       id="pricing-plans"
@@ -130,5 +130,3 @@ const PricingPlans: React.FC = () => {
     </section>
   );
 };
-
-export default PricingPlans;
