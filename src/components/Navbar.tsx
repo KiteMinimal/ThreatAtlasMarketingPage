@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Services", target: "services" },
   { label: "Testimonials", target: "testimonials" },
   { label: "Contact", target: "contact" },
+  { label: "SocialProof", target: "socialProof"}
 ];
 
 export default function Navbar() {

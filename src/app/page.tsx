@@ -8,6 +8,10 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { fadeIn, hoverEffect } from "@/components/Animations";
 import { ShieldCheck, Crosshair, Search, Shield, Zap, KeyRound, Server, Globe } from "lucide-react";
+import SocialProof from "@/components/SocialProof";
+import PricingPlans from "@/components/PricingPlan";
+import DevelopResourcesSection from "@/components/DevelopResourcesSection";
+import FinalQATestingSection from "@/components/FinalQATestingSection";
 
 // Animation variants
 const cardStagger = {
@@ -193,7 +197,10 @@ export default function Home() {
       </motion.section>
 
       <Testimonials />
+      <PricingPlans />
       <TeamSection />
+      <SocialProof />
+      <DevelopResourcesSection />
 
       {/* CTA Section */}
       <motion.section
@@ -217,7 +224,8 @@ export default function Home() {
             Contact Sales
         </motion.a>
       </motion.section>
-
+      
+      <FinalQATestingSection />
       <Footer />
     </div>
   );
