@@ -201,7 +201,7 @@ export default function Page() {
       {/* 7) Team */}
       <TeamSection />
 
-      {/* Feature Highlights Section
+      {/* Feature Highlights Section */}
       <motion.section
         id="features"
         className="py-24 px-4 bg-black"
@@ -239,7 +239,7 @@ export default function Page() {
             </motion.div>
           ))}
         </div>
-      </motion.section> */}
+      </motion.section> 
 
       {/* 8) <CTASection /> */}
       <motion.section
