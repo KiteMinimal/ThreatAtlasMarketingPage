@@ -169,7 +169,7 @@ export default function FinalQATestingSection() {
                 className="rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors p-6 shadow-lg group"
               >
                 <div className="flex items-center gap-3">
-                  <Icon className="h-6 w-6 opacity-90 transform transition-transform duration-300 group-hover:scale-110" />
+                  <Icon className="h-8 w-8 opacity-90 transform transition-transform duration-300 group-hover:scale-110" />
                   <h3 className="text-lg font-semibold text-white">{title}</h3>
                 </div>
                 <p className="mt-3 text-gray-400 leading-relaxed">{desc}</p>
