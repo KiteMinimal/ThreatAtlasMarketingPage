@@ -78,13 +78,23 @@ const features = [
 
 const advantages = [
   {
-    icon: <Globe size={40} className="text-blue-400" />,
+    icon: (
+      <Globe
+        size={40}
+        className="text-blue-400 hover:text-purple-500 transition-colors drop-shadow-[0_0_6px_rgba(99,102,241,0.6)]"
+      />
+    ),
     title: "Unified Platform",
     desc: "All intelligence capabilities in one interface, reducing tool fatigue and improving workflow efficiency.",
     image: "/64b77ad612949eb7452fcee1_enterprise security.jpeg",
   },
   {
-    icon: <Server size={40} className="text-blue-400" />,
+    icon: (
+      <Server
+        size={40}
+        className="text-blue-400 hover:text-purple-500 transition-colors drop-shadow-[0_0_6px_rgba(99,102,241,0.6)]"
+      />
+    ),
     title: "Real-time Analysis",
     desc: "Get instant results with deep historical context to make faster, more informed security decisions.",
     image: "/64b77a6f03c8ab782f8916dc_network security.jpeg",
@@ -147,7 +157,7 @@ export default function Page() {
 
       {/* 4) Why ThreatIntel Pro Section */}
       <motion.section
-        className="py-24 px-4 bg-gray-900"
+        className="py-24 px-4"
         variants={fadeIn}
         initial="hidden"
         whileInView="show"
@@ -216,11 +226,12 @@ export default function Page() {
         >
           A Modern Threat Intelligence Platform
         </motion.h3>
-        <motion.p 
+        <motion.p
           className="text-lg text-gray-400 text-center max-w-3xl mx-auto mb-16"
           variants={headingAnim}
         >
-          ThreatIntel Pro provides all the tools you need to stay ahead of adversaries in one unified, cost-effective solution.
+          ThreatIntel Pro provides all the tools you need to stay ahead of
+          adversaries in one unified, cost-effective solution.
         </motion.p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, i) => (
@@ -234,12 +245,14 @@ export default function Page() {
               viewport={{ once: true, amount: 0.5 }}
             >
               <div className="mb-4">{feature.icon}</div>
-              <h4 className="text-xl font-semibold mb-2 text-white">{feature.title}</h4>
+              <h4 className="text-xl font-semibold mb-2 text-white">
+                {feature.title}
+              </h4>
               <p className="text-gray-400">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
-      </motion.section> 
+      </motion.section>
 
       {/* 8) <CTASection /> */}
       <motion.section

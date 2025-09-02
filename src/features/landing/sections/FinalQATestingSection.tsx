@@ -141,7 +141,7 @@ export default function FinalQATestingSection() {
       <div aria-hidden className={glowBg} />
 
       {/* Wrapper (glass) */}
-      <div className="mx-auto max-w-6xl rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-md shadow-xl">
+      <div className="mx-auto max-w-6xl rounded-3xl   backdrop-blur-md shadow-xl">
         <div className="px-6 md:px-10 lg:px-12 py-12">
           {/* Heading */}
           <motion.h2
@@ -190,7 +190,7 @@ export default function FinalQATestingSection() {
               Frequently Asked Questions
             </h3>
 
-            <div className="mt-6 divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.03]">
+            <div className="mt-6 divide-y divide-white/10 rounded-2xl">
               {faqData.map((item, i) => {
                 const isOpen = open === i;
                 const qId = `${baseId}-q-${i}`;
