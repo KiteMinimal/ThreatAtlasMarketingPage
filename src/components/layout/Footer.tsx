@@ -25,7 +25,7 @@ export default function Footer() {
             {/* Left: Contact Heading + Website */}
             <div>
               <h3 className="text-lg font-semibold text-white mb-10 ">Contact</h3>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-2 pt-8 text-sm">
                 <li className="flex items-center gap-3">
                   <Globe className="w-4 h-4 text-blue-400" />
                   <a
@@ -102,7 +102,7 @@ export default function Footer() {
             />
             <button
               type="submit"
-              className="px-5 py-2 rounded-md bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:opacity-90 transition"
+              className="px-5 py-2 rounded-md bg-blue-600 text-white font-medium hover:opacity-90 transition"
             >
               Subscribe
             </button>

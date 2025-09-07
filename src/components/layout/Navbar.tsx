@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#features", label: "Features" },
-  { href: "#advantages", label: "Why Us" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#testimonials", label: "Testimonials" },
-  { href: "#team", label: "Team" },
+  { href: "#products", label: "Products" },
+  { href: "#services", label: "Services" },
+  { href: "#solutions", label: "Solutions" },
+  { href: "#subscription plans", label: "Subscription plans" },
+  { href: "#resources", label: "Resources" },
+  { href: "#blog", label: "Blog" },
+  { href: "#company", label: "Company" },
+  { href: "#partner", label: "Partner" },
 ];
 
 export default function Navbar() {
@@ -41,7 +43,7 @@ export default function Navbar() {
       </a>
 
       <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black/60 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between">
           {/* Logo / Brand */}
           <a
             href="#home"
@@ -49,8 +51,8 @@ export default function Navbar() {
             aria-label="ThreatIntel Pro - Home"
           >
             {/* Use your logo.svg if available */}
-            {/* <img src="/logo.svg" alt="" className="h-7 w-7" /> */}
-            <span className="text-lg tracking-tight">ThreatIntel&nbsp;Pro</span>
+            <img src="/svg/logo.svg" alt="logo" className="w-52 h-auto"/>
+            {/* <span className="text-lg tracking-tight">ThreatIntel&nbsp;Pro</span> */}
           </a>
 
           {/* Desktop nav */}
@@ -70,9 +72,9 @@ export default function Navbar() {
           <div className="hidden md:block">
             <a
               href="#cta"
-              className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"
+              className="rounded-full bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"
             >
-              Request Demo
+              Sign In
             </a>
           </div>
 
