@@ -26,6 +26,7 @@ import {
   Server,
   Globe,
 } from "lucide-react";
+import DemoForm from "@/features/landing/sections/DemoForm";
 
 // Animation variants
 const cardStagger = {
@@ -146,14 +147,12 @@ export default function Page() {
       </motion.section>
 
       {/* 1) Social Proof */}
-      <SocialProofSection />
 
       {/* 2) Core Features */}
       <CyberServicesSection />
 
       {/* 3) Deep Dives */}
-      <DevelopResourcesSection />
-      <FinalQATestingSection />
+      {/* <DevelopResourcesSection /> */}
 
       {/* 4) Why ThreatIntel Pro Section */}
       <motion.section
@@ -209,7 +208,7 @@ export default function Page() {
       <TestimonialsSection />
 
       {/* 7) Team */}
-      <TeamSection />
+      {/* <TeamSection /> */}
 
       {/* Feature Highlights Section */}
       <motion.section
@@ -255,7 +254,7 @@ export default function Page() {
       </motion.section>
 
       {/* 8) <CTASection /> */}
-      <motion.section
+      {/* <motion.section
         id="cta"
         className="py-24 px-4 text-center bg-black"
         variants={fadeIn}
@@ -282,7 +281,13 @@ export default function Page() {
         >
           Contact Sales
         </motion.a>
-      </motion.section>
+      </motion.section> */}
+
+        <DemoForm />
+
+      <SocialProofSection />
+
+      <FinalQATestingSection />
 
       <Footer />
     </div>
