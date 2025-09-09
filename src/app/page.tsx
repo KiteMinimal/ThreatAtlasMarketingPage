@@ -6,6 +6,7 @@ import {
   PricingPlanSection,
   SocialProofSection,
   TeamSection,
+  ThreatSection,
   TestimonialsSection,
 } from "@/features/landing";
 
@@ -146,8 +147,8 @@ export default function Page() {
         </div>
       </motion.section>
 
-      {/* 1) Social Proof */}
-
+      <ThreatSection />
+      
       {/* 2) Core Features */}
       <CyberServicesSection />
 

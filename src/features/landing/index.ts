@@ -6,3 +6,4 @@ export { default as SocialProofSection } from "./sections/SocialProofSection";
 export { default as TeamSection } from "./sections/TeamSection";
 export { default as TestimonialsSection } from "./sections/TestimonialsSection";
 export { default as ServicesModal } from "./components/ServicesModal";
+export { default as ThreatSection } from "./sections/ThreatSections"
