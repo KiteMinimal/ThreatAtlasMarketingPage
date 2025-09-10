@@ -82,7 +82,7 @@ const Star = ({ filled = true }: { filled?: boolean }) => (
 /* -------------------------
    Component
    ------------------------- */
-export default function CustomerReviewsCarousel(): JSX.Element {
+export default function CustomerReviewsCarousel() {
   const total = REVIEWS.length;
 
   // Responsive visible cards: 1 mobile, 2 tablet, 3 desktop

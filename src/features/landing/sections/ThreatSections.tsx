@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,6 +12,10 @@ type Section = {
   imageSrc: string; // path from public/
   imageAlt?: string;
 };
+
+type SectionType = { id: string; title: string };
+
+
 
 const sections: Section[] = [
   {
@@ -122,6 +126,10 @@ export default function ThreatSections() {
     }
   };
 
+  const setSectionRef = useCallback((id: string) => (el: HTMLDivElement | null) => {
+    sectionRefs.current[id] = el;
+  }, []);
+
   return (
     <div className="w-full">
       {/* NAV section (transparent background) */}
@@ -196,7 +204,8 @@ export default function ThreatSections() {
             <section
               key={s.id}
               id={s.id}
-              ref={(el) => (sectionRefs.current[s.id] = el)}
+              ref={setSectionRef(s.id)}
+
               className="relative grid grid-cols-1 lg:grid-cols-12 gap-6 items-start"
             >
               {/* text column */}

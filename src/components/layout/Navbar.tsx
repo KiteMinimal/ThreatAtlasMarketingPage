@@ -42,8 +42,8 @@ export default function Navbar() {
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black/60 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black">
+        <div className="mx-6 flex h-16 items-center justify-start">
           {/* Logo / Brand */}
           <a
             href="#home"
@@ -51,12 +51,12 @@ export default function Navbar() {
             aria-label="ThreatIntel Pro - Home"
           >
             {/* Use your logo.svg if available */}
-            <img src="/svg/logo.svg" alt="logo" className="w-52 h-auto"/>
+            <img src="/svg/logo.svg" alt="logo" className="w-52 h-auto mr-10"/>
             {/* <span className="text-lg tracking-tight">ThreatIntel&nbsp;Pro</span> */}
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-6 md:flex mr-36">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -68,8 +68,14 @@ export default function Navbar() {
             ))}
           </nav>
 
+          <div className="secondSection text-white flex items-center justify-center gap-6 text-sm">
+            <p>Report an incedent</p>
+            <p>Talk to sales</p>
+            <p className="text-2xl">🔍</p>
+          </div>
+
           {/* CTA (desktop) */}
-          <div className="hidden md:block">
+          <div className="hidden md:block ml-10">
             <a
               href="#cta"
               className="rounded-full bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"

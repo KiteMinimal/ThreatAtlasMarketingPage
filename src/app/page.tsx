@@ -1,11 +1,9 @@
 "use client";
 import {
   CyberServicesSection,
-  DevelopResourcesSection,
   FinalQATestingSection,
   PricingPlanSection,
   SocialProofSection,
-  TeamSection,
   ThreatSection,
   TestimonialsSection,
 } from "@/features/landing";
@@ -28,6 +26,7 @@ import {
   Globe,
 } from "lucide-react";
 import DemoForm from "@/features/landing/sections/DemoForm";
+import Image from "next/image";
 
 // Animation variants
 const cardStagger = {
@@ -148,7 +147,7 @@ export default function Page() {
       </motion.section>
 
       <ThreatSection />
-      
+
       {/* 2) Core Features */}
       <CyberServicesSection />
 

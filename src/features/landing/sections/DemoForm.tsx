@@ -13,7 +13,7 @@ type FormState = {
   subscribe: boolean;
 };
 
-export default function DemoForm(): JSX.Element {
+export default function DemoForm() {
   const [form, setForm] = useState<FormState>({
     firstName: "",
     lastName: "",
