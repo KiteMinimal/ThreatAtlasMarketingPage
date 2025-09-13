@@ -17,7 +17,11 @@ interface ServiceModalProps {
   service: ServiceData | null;
 }
 
-export default function ServiceModal({ isOpen, onClose, service }: ServiceModalProps) {
+export default function ServiceModal({
+  isOpen,
+  onClose,
+  service,
+}: ServiceModalProps) {
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
@@ -58,8 +62,12 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
                 className="w-20 h-20 object-contain rounded-xl border border-gray-600 bg-gray-800 p-2"
               />
               <div className="text-center sm:text-left">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-400 mb-2">{service.title}</h2>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">{service.description}</p>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-blue-400 mb-2">
+                  {service.title}
+                </h2>
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                  {service.description}
+                </p>
               </div>
             </div>
 
@@ -68,18 +76,27 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
             {/* Detalles */}
             {service.details && (
               <div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">Overview</h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">{service.details}</p>
+                <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
+                  Overview
+                </h3>
+                <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+                  {service.details}
+                </p>
               </div>
             )}
 
             {/* Características */}
             {service.features && (
               <div className="mt-6">
-                <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">Key Features</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">
+                  Key Features
+                </h3>
                 <ul className="space-y-3 pl-1">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3 text-base sm:text-lg text-gray-300 leading-snug">
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-base sm:text-lg text-gray-300 leading-snug"
+                    >
                       <CheckCircle className="w-5 h-5 mt-1 text-green-400 flex-shrink-0" />
                       {feature}
                     </li>

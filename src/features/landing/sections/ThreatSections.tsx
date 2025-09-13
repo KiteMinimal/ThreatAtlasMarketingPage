@@ -47,7 +47,6 @@ export default function Page() {
           <span className="inline-block text-2xl sm:text-3xl md:text-4xl lg:text-5xl ">
             single platform tailored to your unique risk profile
           </span>
-          
         </h1>
         <p
           className="mt-10 text-gray-400 text-sm sm:text-base md:text-lg"
@@ -97,10 +96,11 @@ export default function Page() {
             </p>
           ) : (
             <p className="text-gray-200 text-base  sm:text-lg md:text-base leading-relaxed">
-              <strong className="text-violet-900">{active}</strong> — short placeholder content for the{" "}
-              <em className="text-violet-900">{active}</em> tab. Replace with the real module or component
-              for each tab. The active tab controls which content block is shown
-              here.
+              <strong className="text-violet-900">{active}</strong> — short
+              placeholder content for the{" "}
+              <em className="text-violet-900">{active}</em> tab. Replace with
+              the real module or component for each tab. The active tab controls
+              which content block is shown here.
             </p>
           )}
         </div>

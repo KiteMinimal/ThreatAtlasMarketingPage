@@ -12,15 +12,13 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
-    text:
-      "ThreatIntel Pro completely transformed the way we present our business. Highly recommended!",
+    text: "ThreatIntel Pro completely transformed the way we present our business. Highly recommended!",
     name: "Carlos Méndez",
     role: "CEO at AgroTech",
     avatar: "https://i.pravatar.cc/100?img=12",
   },
   {
-    text:
-      "Professional, attentive, and real results in just weeks. We’re incredibly satisfied.",
+    text: "Professional, attentive, and real results in just weeks. We’re incredibly satisfied.",
     name: "Lucía Ramírez",
     role: "Founder at VitaCoach",
     avatar: "https://i.pravatar.cc/100?img=47",
@@ -51,7 +49,10 @@ const QuoteIcon = ({ className = "h-6 w-6" }: { className?: string }) => (
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
 };
 
 const fromLeft = {
@@ -74,13 +75,7 @@ const fromRight = {
   },
 };
 
-function TiltCard({
-  children,
-  i,
-}: {
-  children: React.ReactNode;
-  i: number;
-}) {
+function TiltCard({ children, i }: { children: React.ReactNode; i: number }) {
   // tiny parallax tilt on hover
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
@@ -124,7 +119,10 @@ function TiltCard({
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative bg-black px-6 py-28 scroll-mt-20" id="testimonials">
+    <section
+      className="relative bg-black px-6 py-28 scroll-mt-20"
+      id="testimonials"
+    >
       {/* distinct background for this section */}
       <div
         aria-hidden

@@ -31,26 +31,75 @@ const Grad = ({ id }: { id: string }) => (
 
 const UXIcon = ({ className = "h-6 w-6" }) => (
   <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-    <defs><Grad id="g-ux" /></defs>
-    <rect x="8" y="10" width="32" height="24" rx="3" stroke="url(#g-ux)" strokeWidth="2" fill="none" />
-    <path d="M12 16h10M12 22h6M12 28h8" stroke="url(#g-ux)" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="34" cy="22" r="5" stroke="url(#g-ux)" strokeWidth="2" fill="none" />
+    <defs>
+      <Grad id="g-ux" />
+    </defs>
+    <rect
+      x="8"
+      y="10"
+      width="32"
+      height="24"
+      rx="3"
+      stroke="url(#g-ux)"
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M12 16h10M12 22h6M12 28h8"
+      stroke="url(#g-ux)"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <circle
+      cx="34"
+      cy="22"
+      r="5"
+      stroke="url(#g-ux)"
+      strokeWidth="2"
+      fill="none"
+    />
   </svg>
 );
 
 const SpeedIcon = ({ className = "h-6 w-6" }) => (
   <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-    <defs><Grad id="g-speed" /></defs>
-    <circle cx="24" cy="28" r="12" stroke="url(#g-speed)" strokeWidth="2" fill="none" />
-    <path d="M24 28l7-7" stroke="url(#g-speed)" strokeWidth="2" strokeLinecap="round" />
-    <path d="M10 14h28" stroke="url(#g-speed)" strokeWidth="2" strokeLinecap="round" />
+    <defs>
+      <Grad id="g-speed" />
+    </defs>
+    <circle
+      cx="24"
+      cy="28"
+      r="12"
+      stroke="url(#g-speed)"
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M24 28l7-7"
+      stroke="url(#g-speed)"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M10 14h28"
+      stroke="url(#g-speed)"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const AnalyticsIcon = ({ className = "h-6 w-6" }) => (
   <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-    <defs><Grad id="g-ana" /></defs>
-    <path d="M10 36V20M22 36V12M34 36V24" stroke="url(#g-ana)" strokeWidth="3" strokeLinecap="round" />
+    <defs>
+      <Grad id="g-ana" />
+    </defs>
+    <path
+      d="M10 36V20M22 36V12M34 36V24"
+      stroke="url(#g-ana)"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
     <path d="M8 38h32" stroke="url(#g-ana)" strokeWidth="2" />
   </svg>
 );
@@ -67,20 +116,17 @@ type Highlight = {
 const highlights: Highlight[] = [
   {
     title: "UX Review",
-    desc:
-      "Manual walkthroughs, accessibility checks, and user feedback ensure seamless navigation and clarity.",
+    desc: "Manual walkthroughs, accessibility checks, and user feedback ensure seamless navigation and clarity.",
     Icon: UXIcon,
   },
   {
     title: "Loading Speed",
-    desc:
-      "Lighthouse audits + real-device tests; optimized images, scripts, and caching for snappy performance.",
+    desc: "Lighthouse audits + real-device tests; optimized images, scripts, and caching for snappy performance.",
     Icon: SpeedIcon,
   },
   {
     title: "Analytics Integration",
-    desc:
-      "Plug-and-play GA4 / Segment / privacy-first analytics with event tracking verified pre-launch.",
+    desc: "Plug-and-play GA4 / Segment / privacy-first analytics with event tracking verified pre-launch.",
     Icon: AnalyticsIcon,
   },
 ];
@@ -115,12 +161,19 @@ const faqData: FAQItem[] = [
 ---------------------------- */
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.12 } },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.12 },
+  },
 };
 
 const itemUp = {
   hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 90, damping: 16 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 90, damping: 16 },
+  },
 };
 
 const fadeIn = {
@@ -136,7 +189,10 @@ export default function FinalQATestingSection() {
   const baseId = useId(); // unique ids for a11y
 
   return (
-    <section id="final-qa" className="relative scroll-mt-20 py-24 px-6 md:px-10 lg:px-16">
+    <section
+      id="final-qa"
+      className="relative scroll-mt-20 py-24 px-6 md:px-10 lg:px-16"
+    >
       {/* Background */}
       <div aria-hidden className={glowBg} />
 

@@ -6,6 +6,7 @@ import {
   SocialProofSection,
   ThreatSection,
   TestimonialsSection,
+  LeadersReview,
 } from "@/features/landing";
 
 import Navbar from "@/components/layout/Navbar";
@@ -45,7 +46,10 @@ const headingAnim = {
 // New variants for hero content stagger
 const heroContainer = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12, when: "beforeChildren" } },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, when: "beforeChildren" },
+  },
 };
 const heroItem = {
   hidden: { opacity: 0, y: 14 },
@@ -165,7 +169,9 @@ export default function Page() {
 
           <motion.h2
             className="text-5xl sm:text-3xl font-bold mb-8 leading-snug bg-clip-text text-transparent"
-            style={{ backgroundImage: "linear-gradient(90deg,#5E17EB,#3b82f6)" }}
+            style={{
+              backgroundImage: "linear-gradient(90deg,#5E17EB,#3b82f6)",
+            }}
             variants={heroItem}
           >
             Actionable Threat Intelligence, Simplified.
@@ -322,6 +328,10 @@ export default function Page() {
           ))}
         </div>
       </motion.section>
+
+      <LeadersReview />
+
+      <div className="w-full my-28 bg-gray-600" style={{ height: "1px" }} />
 
       <DemoForm />
 

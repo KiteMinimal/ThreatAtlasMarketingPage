@@ -24,7 +24,9 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between gap-6">
             {/* Left: Contact Heading + Website */}
             <div>
-              <h3 className="text-lg font-semibold text-white mb-10 ">Contact</h3>
+              <h3 className="text-lg font-semibold text-white mb-10 ">
+                Contact
+              </h3>
               <ul className="space-y-2 pt-8 text-sm">
                 <li className="flex items-center gap-3">
                   <Globe className="w-4 h-4 text-blue-400" />
@@ -117,7 +119,8 @@ export default function Footer() {
               className="mt-1 mr-2 rounded border-gray-600 text-blue-500 focus:ring-purple-500"
             />
             <label htmlFor="privacy">
-              I agree that my personal data will be processed <br /> according to the{" "}
+              I agree that my personal data will be processed <br /> according
+              to the{" "}
               <a href="#" className="text-purple-400 hover:underline">
                 Privacy Policy
               </a>
@@ -130,7 +133,8 @@ export default function Footer() {
       {/* --- Bottom Bar --- */}
       <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
         <span>
-          &copy; {new Date().getFullYear()} ParityBit Security. All rights reserved.
+          &copy; {new Date().getFullYear()} ParityBit Security. All rights
+          reserved.
         </span>
         <div className="flex space-x-6 mt-2 md:mt-0">
           <a href="#" className="hover:text-purple-400 transition-colors">

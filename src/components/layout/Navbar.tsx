@@ -51,7 +51,7 @@ export default function Navbar() {
             aria-label="ThreatIntel Pro - Home"
           >
             {/* Use your logo.svg if available */}
-            <img src="/svg/logo.svg" alt="logo" className="w-52 h-auto mr-10"/>
+            <img src="/svg/logo.svg" alt="logo" className="w-52 h-auto mr-10" />
             {/* <span className="text-lg tracking-tight">ThreatIntel&nbsp;Pro</span> */}
           </a>
 
@@ -71,7 +71,9 @@ export default function Navbar() {
           <div className="secondSection text-white flex items-center justify-center gap-6 text-sm">
             <p>Report an incedent</p>
             <p>Talk to sales</p>
-            <p className="text-2xl"><Search /></p>
+            <p className="text-2xl">
+              <Search />
+            </p>
           </div>
 
           {/* CTA (desktop) */}

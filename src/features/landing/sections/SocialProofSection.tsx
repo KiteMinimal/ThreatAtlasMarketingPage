@@ -189,7 +189,10 @@ export default function CustomerReviewsCarousel() {
   };
 
   // handle drag end: determine swipe offset and snap to nearest
-  const handleDragEnd = (_: any, info: { offset: { x: number }; velocity: { x: number } }) => {
+  const handleDragEnd = (
+    _: any,
+    info: { offset: { x: number }; velocity: { x: number } }
+  ) => {
     const offsetX = info.offset.x;
     const velocityX = info.velocity.x;
     const { cardWidthPx } = dimsRef.current;
@@ -283,7 +286,9 @@ export default function CustomerReviewsCarousel() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-medium text-white">Customer Reviews</h2>
+            <h2 className="text-4xl md:text-5xl font-medium text-white">
+              Customer Reviews
+            </h2>
           </div>
 
           {/* carousel wrapper */}
@@ -301,11 +306,19 @@ export default function CustomerReviewsCarousel() {
                   prev();
                   setTimeout(() => (pausedRef.current = false), 800);
                 }}
-                className={`p-2 rounded-full bg-white/[0.03] text-white/90 border border-white/6 hover:bg-white/[0.04] transition ${leftDisabled ? "opacity-40 cursor-not-allowed" : ""}`}
+                className={`p-2 rounded-full bg-white/[0.03] text-white/90 border border-white/6 hover:bg-white/[0.04] transition ${
+                  leftDisabled ? "opacity-40 cursor-not-allowed" : ""
+                }`}
                 disabled={leftDisabled}
               >
                 <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                  <path d="M12 16L6 10l6-6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M12 16L6 10l6-6"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             </div>
@@ -318,11 +331,19 @@ export default function CustomerReviewsCarousel() {
                   next();
                   setTimeout(() => (pausedRef.current = false), 800);
                 }}
-                className={`p-2 rounded-full bg-white/[0.03] text-white/90 border border-white/6 hover:bg-white/[0.04] transition ${rightDisabled ? "opacity-40 cursor-not-allowed" : ""}`}
+                className={`p-2 rounded-full bg-white/[0.03] text-white/90 border border-white/6 hover:bg-white/[0.04] transition ${
+                  rightDisabled ? "opacity-40 cursor-not-allowed" : ""
+                }`}
                 disabled={rightDisabled}
               >
                 <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                  <path d="M8 16l6-6-6-6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M8 16l6-6-6-6"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             </div>
@@ -339,7 +360,10 @@ export default function CustomerReviewsCarousel() {
               <motion.div
                 ref={trackRef}
                 drag="x"
-                dragConstraints={{ left: dimsRef.current.minX, right: dimsRef.current.maxX }}
+                dragConstraints={{
+                  left: dimsRef.current.minX,
+                  right: dimsRef.current.maxX,
+                }}
                 dragElastic={0.12}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
@@ -351,12 +375,23 @@ export default function CustomerReviewsCarousel() {
                   const cardWidth = `${percentPerCard}%`;
                   const isActive = i === index;
                   return (
-                    <div key={r.id} style={{ flex: `0 0 ${cardWidth}` }} className="py-2">
+                    <div
+                      key={r.id}
+                      style={{ flex: `0 0 ${cardWidth}` }}
+                      className="py-2"
+                    >
                       <motion.article
                         layout
                         initial={{ opacity: 0.95 }}
-                        animate={{ opacity: isActive ? 1 : 0.94, scale: isActive ? 1 : 0.985 }}
-                        transition={{ type: "spring", stiffness: 120, damping: 16 }}
+                        animate={{
+                          opacity: isActive ? 1 : 0.94,
+                          scale: isActive ? 1 : 0.985,
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 16,
+                        }}
                         className="mx-auto max-w-[380px] rounded-2xl p-6 md:p-8 border border-white/6 bg-gradient-to-br from-black/60 to-black/70 shadow-xl cursor-pointer"
                         style={{
                           background:
@@ -377,26 +412,38 @@ export default function CustomerReviewsCarousel() {
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-md bg-gradient-to-br from-blue-900 to-indigo-900 border border-white/6 flex items-center justify-center text-white font-semibold text-sm">
-                              {r.company ? r.company.charAt(0) : r.name.charAt(0)}
+                              {r.company
+                                ? r.company.charAt(0)
+                                : r.name.charAt(0)}
                             </div>
                             <div>
-                              <div className="text-sm text-gray-300">{r.company ?? r.name}</div>
-                              <div className="text-xs text-gray-400">{r.date}</div>
+                              <div className="text-sm text-gray-300">
+                                {r.company ?? r.name}
+                              </div>
+                              <div className="text-xs text-gray-400">
+                                {r.date}
+                              </div>
                             </div>
                           </div>
 
-                          <div className="text-white/80 text-2xl leading-none">“</div>
+                          <div className="text-white/80 text-2xl leading-none">
+                            “
+                          </div>
                         </div>
 
                         {/* quote */}
                         <blockquote className="mt-6 text-gray-200 text-base leading-relaxed min-h-[120px]">
-                          {r.quote.length > 220 ? r.quote.slice(0, 220) + "…" : r.quote}
+                          {r.quote.length > 220
+                            ? r.quote.slice(0, 220) + "…"
+                            : r.quote}
                         </blockquote>
 
                         {/* rating & read more */}
                         <div className="mt-6 flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="text-indigo-200 font-semibold text-lg">{r.rating.toFixed(1)}</div>
+                            <div className="text-indigo-200 font-semibold text-lg">
+                              {r.rating.toFixed(1)}
+                            </div>
                             <div className="flex items-center gap-1">
                               {Array.from({ length: 5 }).map((_, idx) => {
                                 const filled = idx < Math.round(r.rating);
@@ -407,8 +454,18 @@ export default function CustomerReviewsCarousel() {
 
                           <div className="text-sm text-gray-300 flex items-center gap-2">
                             <span>Read more</span>
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                              <path d="M5 12h14M13 5l7 7-7 7" stroke="#d1d5ff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                            <svg
+                              className="w-4 h-4"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M5 12h14M13 5l7 7-7 7"
+                                stroke="#d1d5ff"
+                                strokeWidth="1.4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
                             </svg>
                           </div>
                         </div>
@@ -432,7 +489,9 @@ export default function CustomerReviewsCarousel() {
                       goTo(i);
                       setTimeout(() => (pausedRef.current = false), 700);
                     }}
-                    className={`w-12 md:w-14 h-1.5 rounded-full transition-all ${active ? "bg-white" : "bg-white/10"}`}
+                    className={`w-12 md:w-14 h-1.5 rounded-full transition-all ${
+                      active ? "bg-white" : "bg-white/10"
+                    }`}
                   />
                 );
               })}
@@ -442,7 +501,11 @@ export default function CustomerReviewsCarousel() {
       </section>
 
       {/* Full testimonial modal */}
-      <AnimateModal open={modalOpen} onClose={closeModal} review={modalReview} />
+      <AnimateModal
+        open={modalOpen}
+        onClose={closeModal}
+        review={modalReview}
+      />
     </>
   );
 }
@@ -484,7 +547,10 @@ function AnimateModal({
           aria-modal="true"
           aria-label={`Full testimonial by ${review.name}`}
         >
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={onClose}
+          />
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -494,13 +560,19 @@ function AnimateModal({
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-lg font-semibold text-white">{review.name}</div>
-                <div className="text-sm text-gray-300">{review.role} {review.location ? `• ${review.location}` : ""}</div>
+                <div className="text-lg font-semibold text-white">
+                  {review.name}
+                </div>
+                <div className="text-sm text-gray-300">
+                  {review.role} {review.location ? `• ${review.location}` : ""}
+                </div>
                 <div className="text-xs text-gray-400 mt-1">{review.date}</div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="text-indigo-200 font-semibold text-lg">{review.rating.toFixed(1)}</div>
+                <div className="text-indigo-200 font-semibold text-lg">
+                  {review.rating.toFixed(1)}
+                </div>
                 <div className="flex items-center gap-1">
                   {Array.from({ length: 5 }).map((_, idx) => {
                     const filled = idx < Math.round(review.rating);

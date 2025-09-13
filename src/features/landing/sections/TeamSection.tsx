@@ -35,7 +35,10 @@ const team: Member[] = [
 // Animations (distinct from other sections: gentle zoom-in + vertical float on hover)
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.08 } },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.08 },
+  },
 };
 
 const cardVar = {
@@ -50,7 +53,10 @@ const cardVar = {
 
 export default function TeamSection() {
   return (
-    <section id="team" className="relative bg-gradient-to-b from-black to-gray-950 px-6 py-28 scroll-mt-20">
+    <section
+      id="team"
+      className="relative bg-gradient-to-b from-black to-gray-950 px-6 py-28 scroll-mt-20"
+    >
       {/* Distinct background: soft dots + gradient blobs */}
       <div
         aria-hidden
@@ -74,7 +80,8 @@ export default function TeamSection() {
         viewport={{ once: true, amount: 0.5 }}
         className="text-center text-gray-300/90 max-w-3xl mx-auto mt-3 mb-14"
       >
-        A team of dedicated professionals with expertise in software development, product strategy, and technical leadership.
+        A team of dedicated professionals with expertise in software
+        development, product strategy, and technical leadership.
       </motion.p>
 
       <motion.div
@@ -111,7 +118,9 @@ export default function TeamSection() {
               </div>
             </div>
 
-            <h3 className="text-xl font-bold text-white text-center">{member.name}</h3>
+            <h3 className="text-xl font-bold text-white text-center">
+              {member.name}
+            </h3>
             <p className="text-sm font-medium text-center bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent mt-1">
               {member.role}
             </p>

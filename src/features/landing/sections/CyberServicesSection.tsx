@@ -35,23 +35,23 @@ export default function ThreatIntelligencePage() {
       <section className="max-w-5xl text-center">
         <h1 className="text-4xl md:text-5xl leading-tight font-semibold">
           Transform raw{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-semibold">digital threat intelligence</span>{" "}
+          <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-semibold">
+            digital threat intelligence
+          </span>{" "}
           and hidden patterns into proactive defense
         </h1>
         <p className="mt-6 text-base text-gray-400">
           Group-IB Threat Intelligence Platform delivers the full value of
           digital threat intelligence, <br /> strengthening every component of
-          your security with strategic, operational, and tactical <br /> insights
+          your security with strategic, operational, and tactical <br />{" "}
+          insights
         </p>
       </section>
 
       {/* Intelligence Types */}
       <section className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl w-full">
         {content.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center text-center"
-          >
+          <div key={index} className="flex flex-col items-center text-center">
             <Image
               src={item.url}
               alt={item.title}
@@ -59,8 +59,8 @@ export default function ThreatIntelligencePage() {
               height={150}
               className="mb-6"
             />
-            <h2 className="text-xl font-semibold">{item.title}</h2>
-            <p className="mt-4 text-gray-300">{item.desc}</p>
+            <h2 className="text-2xl  font-semibold">{item.title}</h2>
+            <p className="mt-4 text-gray-400">{item.desc}</p>
           </div>
         ))}
       </section>

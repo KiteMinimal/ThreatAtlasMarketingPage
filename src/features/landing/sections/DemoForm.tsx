@@ -170,8 +170,8 @@ export default function DemoForm() {
                 aria-required="true"
               />
               <span>
-                I understand and agree that my personal data will be collected and
-                processed according to the{" "}
+                I understand and agree that my personal data will be collected
+                and processed according to the{" "}
                 <a
                   href="/privacy"
                   className="text-purple-300 underline"
@@ -212,7 +212,6 @@ export default function DemoForm() {
                 type="submit"
                 disabled={submitting}
                 className="inline-flex items-center justify-center px-12 py-3 bg-[#5515D4] rounded-full text-white font-medium shadow-[0_10px_30px_rgba(124,58,237,0.25)] transition-transform active:scale-[0.99] disabled:opacity-60"
-                
               >
                 {submitting ? "Submitting..." : "Submit"}
               </button>
