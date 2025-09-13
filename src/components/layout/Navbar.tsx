@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 
 const navLinks = [
   { href: "#products", label: "Products" },
@@ -42,7 +42,7 @@ export default function Navbar() {
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black/90">
         <div className="mx-6 flex h-16 items-center justify-start">
           {/* Logo / Brand */}
           <a
@@ -71,14 +71,14 @@ export default function Navbar() {
           <div className="secondSection text-white flex items-center justify-center gap-6 text-sm">
             <p>Report an incedent</p>
             <p>Talk to sales</p>
-            <p className="text-2xl">🔍</p>
+            <p className="text-2xl"><Search /></p>
           </div>
 
           {/* CTA (desktop) */}
           <div className="hidden md:block ml-10">
             <a
               href="#cta"
-              className="rounded-full bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"
+              className="rounded bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"
             >
               Sign In
             </a>

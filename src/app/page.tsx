@@ -26,7 +26,6 @@ import {
   Globe,
 } from "lucide-react";
 import DemoForm from "@/features/landing/sections/DemoForm";
-import Image from "next/image";
 
 // Animation variants
 const cardStagger = {
@@ -43,35 +42,45 @@ const headingAnim = {
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80 } },
 };
 
+// New variants for hero content stagger
+const heroContainer = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.12, when: "beforeChildren" } },
+};
+const heroItem = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 // Features data with new icons
 const features = [
   {
-    icon: <Crosshair size={32} className="text-blue-400" />,
+    icon: <Crosshair size={32} className="text-[#5E17EB]" />,
     title: "IOC Reconnaissance Engine",
     desc: "Transform suspicious indicators into actionable intelligence in seconds.",
   },
   {
-    icon: <ShieldCheck size={32} className="text-blue-400" />,
+    icon: <ShieldCheck size={32} className="text-[#5E17EB]" />,
     title: "Malicious IOC Detection",
     desc: "Stop chasing false positives with our advanced validation engine.",
   },
   {
-    icon: <Search size={32} className="text-blue-400" />,
+    icon: <Search size={32} className="text-[#5E17EB]" />,
     title: "Dark Web Intelligence",
     desc: "Get early warnings of threats & compromised credentials before they strike.",
   },
   {
-    icon: <Shield size={32} className="text-blue-400" />,
+    icon: <Shield size={32} className="text-[#5E17EB]" />,
     title: "MITRE ATT&CK Mapping",
     desc: "Understand how attackers operate and identify gaps in your security posture.",
   },
   {
-    icon: <Zap size={32} className="text-blue-400" />,
+    icon: <Zap size={32} className="text-[#5E17EB]" />,
     title: "APT Group Intelligence Hub",
     desc: "Track adversaries targeting your industry with detailed profiles and analysis.",
   },
   {
-    icon: <KeyRound size={32} className="text-blue-400" />,
+    icon: <KeyRound size={32} className="text-[#5E17EB]" />,
     title: "Password Breach Intelligence",
     desc: "Protect your digital identity by monitoring for exposed credentials proactively.",
   },
@@ -103,47 +112,108 @@ const advantages = [
 ];
 
 export default function Page() {
+  // Adjust this value until all text starts visually below your "square icon" in the background image.
+  // Example: "120px" or "16vh" — tweak per your image and breakpoint needs.
+  const iconOffset = "240px";
+  const bgImage = "/images/homeImg.jpg";
+
   return (
     <div className="bg-black text-white min-h-screen flex flex-col justify-between scroll-smooth">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section: background-image + content on top (content starts below the square icon) */}
       <motion.section
-        className="relative px-4 text-center min-h-screen flex flex-col justify-center bg-gradient-to-b from-gray-900 to-black overflow-hidden"
+        className="relative px-4 text-center min-h-screen flex flex-col justify-start overflow-hidden"
         variants={fadeIn}
         initial="hidden"
         animate="show"
         id="home"
+        // set CSS variable so content block top can be tuned to sit below the icon in the image
+        style={{ ["--icon-offset" as any]: iconOffset } as React.CSSProperties}
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-50"
+        {/* Animated background layer (acts as the image background) */}
+        <motion.div
+          className="absolute inset-0 bg-center bg-cover will-change-transform"
+          style={{ backgroundImage: `url(${bgImage})` }}
+          aria-hidden
+          initial={{ scale: 1.04, opacity: 0.95 }}
+          animate={{ scale: [1.04, 1, 1.02], rotate: [0, 0.2, -0.2, 0] }}
+          transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Soft dark overlay to keep text readable */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/60 via-black/25 to-black/70" />
+
+        {/* CyberGridBackground (if you have it, it will layer on top of background image) */}
+        <CyberGridBackground className="absolute inset-0 z-0" />
+
+        {/* Content: placed on the image and starts below the square icon using --icon-offset */}
+        <motion.div
+          className="absolute left-0 right-0 mx-auto w-full max-w-4xl px-4 z-10 text-center"
+          // place content block vertically relative to the CSS variable
+          style={{ top: "var(--icon-offset)" }}
+          variants={heroContainer}
+          initial="hidden"
+          animate="show"
         >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-        <CyberGridBackground />
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 leading-tight">
-            ThreatIntel Pro
-          </h1>
-          <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 mb-8 leading-snug">
+          <motion.h1
+            className="text-2xl font-sans sm:text-6xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg"
+            variants={heroItem}
+          >
+            ThreatAtlas Pro
+          </motion.h1>
+
+          <motion.h2
+            className="text-5xl sm:text-3xl font-bold mb-8 leading-snug bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg,#5E17EB,#3b82f6)" }}
+            variants={heroItem}
+          >
             Actionable Threat Intelligence, Simplified.
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+          </motion.h2>
+
+          <motion.p
+            className="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed"
+            variants={heroItem}
+          >
             Empower your security team to detect, analyze, and respond to cyber
             threats before they impact your organization.
-          </p>
+          </motion.p>
+
           <motion.a
             href="#cta"
-            className="bg-gradient-to-r from-blue-500 to-purple-600 px-10 py-4 rounded-full font-semibold text-white text-lg transition-transform shadow-lg"
+            className="inline-block bg-[#5E17EB] px-4 py-3 rounded font-semibold text-white text-md transition-transform shadow-lg"
             {...hoverEffect}
+            variants={heroItem}
           >
             Request a Demo
           </motion.a>
-        </div>
+
+          <motion.a
+            href="#cta"
+            className="inline-block ml-4 border-2 border-purple-900/40 px-4 py-3 rounded font-semibold text-white text-md transition-transform shadow-lg"
+            {...hoverEffect}
+            variants={heroItem}
+          >
+            Request a Demo
+          </motion.a>
+        </motion.div>
+
+        {/* Responsive helper styles for icon offset. Tweak values if needed. */}
+        <style>{`
+          /* Desktop: uses iconOffset as-is */
+          @media (min-width: 1280px) {
+            :root { --icon-offset: ${iconOffset}; }
+          }
+          /* Medium screens: scale down */
+          @media (max-width: 1279px) and (min-width: 768px) {
+            :root { --icon-offset: calc(${iconOffset} * 0.8); }
+          }
+          /* Small screens: further reduce */
+          @media (max-width: 767px) {
+            :root { --icon-offset: calc(${iconOffset} * 0.6); }
+            .text-5xl { font-size: 2.25rem; } /* keep heading readable on small screens */
+          }
+        `}</style>
       </motion.section>
 
       <ThreatSection />
@@ -253,37 +323,7 @@ export default function Page() {
         </div>
       </motion.section>
 
-      {/* 8) <CTASection /> */}
-      {/* <motion.section
-        id="cta"
-        className="py-24 px-4 text-center bg-black"
-        variants={fadeIn}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <img
-          src="/64b8d16d96243d6341ddbec4_red code alert (2).jpeg"
-          alt="Alert Icon"
-          className="w-24 h-24 mx-auto mb-6 rounded-full shadow-lg border-4 border-gray-700"
-        />
-        <h3 className="text-3xl font-bold mb-4">
-          Ready to Strengthen Your Security?
-        </h3>
-        <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-          See ThreatIntel Pro in action. Schedule a personalized demo with our
-          experts today.
-        </p>
-        <motion.a
-          href="#"
-          className="bg-gradient-to-r from-blue-500 to-purple-600 px-10 py-4 rounded-full font-semibold text-white text-lg transition-transform shadow-lg"
-          {...hoverEffect}
-        >
-          Contact Sales
-        </motion.a>
-      </motion.section> */}
-
-        <DemoForm />
+      <DemoForm />
 
       <SocialProofSection />
 

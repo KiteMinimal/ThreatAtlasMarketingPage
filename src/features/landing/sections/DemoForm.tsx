@@ -211,11 +211,8 @@ export default function DemoForm() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center px-12 py-3 rounded-full text-white font-medium shadow-[0_10px_30px_rgba(124,58,237,0.25)] transition-transform active:scale-[0.99] disabled:opacity-60"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg,#6f2bd9 0%, #8f5bff 50%, #c89bff 100%)",
-                }}
+                className="inline-flex items-center justify-center px-12 py-3 bg-[#5515D4] rounded-full text-white font-medium shadow-[0_10px_30px_rgba(124,58,237,0.25)] transition-transform active:scale-[0.99] disabled:opacity-60"
+                
               >
                 {submitting ? "Submitting..." : "Submit"}
               </button>
