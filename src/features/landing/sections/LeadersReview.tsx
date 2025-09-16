@@ -59,7 +59,7 @@ export const bottomIcons = [
 
 export default function LeadersReview() {
   return (
-    <section className="w-full bg-black text-white py-2">
+    <section className="w-full bg-black text-white py-2 mt-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
         <h2 className="text-center text-4xl md:text-5xl font-bold tracking-tight mb-12">

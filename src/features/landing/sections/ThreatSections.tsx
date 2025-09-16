@@ -1,5 +1,8 @@
 // app/page.tsx - ParityBit Hero (Vertical Layout)
 // -----------------------------------------------
+
+"use client"
+
 import React, { useState } from "react";
 
 const tabs = [

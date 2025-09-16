@@ -1,8 +1,8 @@
 // components/CustomerReviewsCarousel.tsx
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useMotionValue, animate } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, animate, PanInfo } from "framer-motion";
 
 type Review = {
   id: string;
@@ -189,10 +189,7 @@ export default function CustomerReviewsCarousel() {
   };
 
   // handle drag end: determine swipe offset and snap to nearest
-  const handleDragEnd = (
-    _: any,
-    info: { offset: { x: number }; velocity: { x: number } }
-  ) => {
+  const handleDragEnd = (_event: MouseEvent | PointerEvent | TouchEvent, info: PanInfo) => {
     const offsetX = info.offset.x;
     const velocityX = info.velocity.x;
     const { cardWidthPx } = dimsRef.current;

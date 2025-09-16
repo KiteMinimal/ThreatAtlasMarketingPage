@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+
 export default function CyberGridBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   let mouseX = -999;

@@ -8,7 +8,7 @@ const navLinks = [
   { href: "#products", label: "Products" },
   { href: "#services", label: "Services" },
   { href: "#solutions", label: "Solutions" },
-  { href: "#subscription plans", label: "Subscription plans" },
+  { href: "#subscription-plans", label: "Subscription plans" },
   { href: "#resources", label: "Resources" },
   { href: "#blog", label: "Blog" },
   { href: "#company", label: "Company" },
@@ -17,6 +17,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -32,6 +33,34 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", handler);
   }, []);
 
+  // Smooth scroll listener (rAF throttled)
+  useEffect(() => {
+    let ticking = false;
+    const threshold = 16; // px scrolled before blur kicks in (adjust as needed)
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > threshold);
+          ticking = false;
+        });
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // run once to set initial state (useful when reloading not at top)
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Inline style for smooth backdrop-filter transition (works even if Tailwind backdrop utilities aren't active)
+  const backdropStyle: React.CSSProperties = {
+    backdropFilter: scrolled ? "blur(8px) saturate(130%)" : "none",
+    WebkitBackdropFilter: scrolled ? "blur(8px) saturate(130%)" : "none",
+    transition: "background-color 260ms ease, backdrop-filter 260ms ease, -webkit-backdrop-filter 260ms ease",
+  };
+
   return (
     <>
       {/* Skip link for accessibility */}
@@ -42,17 +71,40 @@ export default function Navbar() {
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black/90">
-        <div className="mx-6 flex h-16 items-center justify-start">
+      <header
+        className={`sticky top-0 z-40 w-full border-b ${scrolled ? "border-white/10" : "border-transparent"}`}
+        style={{
+          ...backdropStyle,
+          // background: change opacity based on scroll
+          backgroundColor: scrolled ? "rgba(0,0,0,0.62)" : "transparent",
+          // optional subtle fallback shadow when scrolled
+          boxShadow: scrolled ? "0 6px 18px rgba(2,6,23,0.25)" : "none",
+        }}
+      >
+        {/* Optional textured overlay to add "smooth texture" feel */}
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-0 select-none`}
+          style={{
+            backgroundImage:
+              scrolled
+                ? // a very subtle noise/texture using svg-data-url (helps that "texture" feel)
+                  `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='1' stitchTiles='stitch' /></filter><rect width='60' height='60' filter='url(%23n)' opacity='0.02' /></svg>")`
+                : "none",
+            opacity: scrolled ? 1 : 0,
+            transition: "opacity 260ms ease",
+            mixBlendMode: "overlay",
+          }}
+        />
+
+        <div className="relative mx-6 flex h-16 items-center justify-start">
           {/* Logo / Brand */}
           <a
             href="#home"
             className="flex items-center gap-2 font-bold text-white"
             aria-label="ThreatIntel Pro - Home"
           >
-            {/* Use your logo.svg if available */}
-            <img src="/svg/logo.svg" alt="logo" className="w-52 h-auto mr-10" />
-            {/* <span className="text-lg tracking-tight">ThreatIntel&nbsp;Pro</span> */}
+            <img src="/svg/logo.png" alt="logo" className="w-52 h-auto mr-10" />
           </a>
 
           {/* Desktop nav */}
