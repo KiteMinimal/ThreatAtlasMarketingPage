@@ -39,11 +39,6 @@ const cardStagger = {
   }),
 };
 
-// const headingAnim = {
-//   hidden: { opacity: 0, y: -30 },
-//   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80 } },
-// };
-
 // New variants for hero content stagger
 const heroContainer = {
   hidden: { opacity: 0 },
@@ -122,25 +117,21 @@ const advantages: {
 ];
 
 export default function Page() {
-  // Adjust this value until all text starts visually below your "square icon" in the background image.
-  const iconOffset = "240px";
+  const iconOffset = "300px";
   const bgImage = "/images/homeImg.jpg";
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col justify-between scroll-smooth">
       <Navbar />
 
-      {/* Hero Section: background-image + content on top (content starts below the square icon) */}
       <motion.section
         className="relative px-4 text-center min-h-screen flex flex-col justify-start overflow-hidden"
         variants={fadeIn}
         initial="hidden"
         animate="show"
         id="home"
-        // set CSS variable so content block top can be tuned to sit below the icon in the image
         style={{ "--icon-offset": iconOffset } as React.CSSProperties}
       >
-        {/* Animated background layer (acts as the image background) */}
         <motion.div
           className="absolute inset-0 bg-center bg-cover will-change-transform"
           style={{ backgroundImage: `url(${bgImage})` }}
@@ -160,11 +151,26 @@ export default function Page() {
           initial="hidden"
           animate="show"
         >
+          <motion.img
+            src="/images/logo-placeholder.png"
+            alt="ThreatAtlas logo"
+            className="mx-auto w-24 sm:w-28 md:w-36 lg:w-44 h-auto mb-4"
+            variants={heroItem}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.6 }}
+          />
+
+          {/* Glossy white text effect with shine animation */}
           <motion.h1
-            className="text-2xl font-sans sm:text-6xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg"
+            className="relative text-2xl font-sans sm:text-6xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg overflow-hidden"
             variants={heroItem}
           >
-            ThreatAtlas
+            <span
+              className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white animate-shine"
+            >
+              ThreatAtlas
+            </span>
           </motion.h1>
 
           <motion.h2
@@ -208,14 +214,23 @@ export default function Page() {
         </motion.div>
 
         <style>{`
+          @keyframes shine {
+            0% { background-position: -200% center; }
+            50% { background-position: 200% center; }
+            100% { background-position: 200% center; }
+          }
+          .animate-shine {
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+          }
           @media (min-width: 1280px) {
             :root { --icon-offset: ${iconOffset}; }
           }
           @media (max-width: 1279px) and (min-width: 768px) {
-            :root { --icon-offset: calc(${iconOffset} * 0.8); }
+            :root { --icon-offset: calc(${iconOffset} * 0.82); }
           }
           @media (max-width: 767px) {
-            :root { --icon-offset: calc(${iconOffset} * 0.6); }
+            :root { --icon-offset: calc(${iconOffset} * 0.62); }
             .text-5xl { font-size: 2.25rem; }
           }
         `}</style>

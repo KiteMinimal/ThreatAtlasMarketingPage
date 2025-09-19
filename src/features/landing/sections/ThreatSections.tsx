@@ -55,23 +55,23 @@ export default function Page() {
           className="mt-10 text-gray-400 text-sm sm:text-base md:text-lg"
           style={{ fontFamily: "'Inter', system-ui" }}
         >
-          Key features of Group-IB’s threat intelligence solution
+          Key features of ThreatAtlas threat intelligence solution
         </p>
       </header>
 
       {/* Tabs */}
       <nav className="w-full px-6 mt-10">
         <div className="mx-auto bg-[#191919] rounded-xl max-w-fit">
-          <div className="flex items-center overflow-x-auto">
+          <div className="flex items-center gap-1 overflow-x-auto">
             {tabs.map((t) => (
               <button
                 key={t}
                 onClick={() => setActive(t)}
-                className={`flex-shrink-0 text-sm md:text-base px-4 md:px-5 py-2 md:py-3 whitespace-nowrap font-medium focus:outline-none shadow-sm mr-1
+                className={`flex-shrink-0 text-sm md:text-base px-4 md:px-5 py-2 md:py-3 whitespace-nowrap font-medium focus:outline-none shadow-sm
                   ${
                     t === active
-                      ? "bg-[#2a2a2a] rounded text-white shadow-lg"
-                      : "text-gray-300 hover:bg-[#2a2a2a] rounded"
+                      ? "bg-[#2a2a2a] rounded-xl text-white shadow-lg"
+                      : "text-gray-300 hover:bg-[#2a2a2a] rounded-xl"
                   }`}
                 aria-pressed={t === active}
               >
@@ -89,7 +89,7 @@ export default function Page() {
           {active === "Dark web" ? (
             <p className="text-gray-200 text-base sm:text-lg md:text-base leading-relaxed">
               <strong className="text-violet-900">
-                Group-IB’s <u>Unified Risk Platform</u>
+                ThreatAtlas <u>Unified Risk Platform</u>
               </strong>{" "}
               boasts the industry’s largest library of <u>dark web data</u>{" "}
               sources and access to digital threat intelligence, enabling you to

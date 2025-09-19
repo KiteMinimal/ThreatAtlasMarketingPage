@@ -58,7 +58,8 @@ export default function Navbar() {
   const backdropStyle: React.CSSProperties = {
     backdropFilter: scrolled ? "blur(8px) saturate(130%)" : "none",
     WebkitBackdropFilter: scrolled ? "blur(8px) saturate(130%)" : "none",
-    transition: "background-color 260ms ease, backdrop-filter 260ms ease, -webkit-backdrop-filter 260ms ease",
+    transition:
+      "background-color 260ms ease, backdrop-filter 260ms ease, -webkit-backdrop-filter 260ms ease",
   };
 
   return (
@@ -97,18 +98,17 @@ export default function Navbar() {
           }}
         />
 
-        <div className="relative mx-6 flex h-16 items-center justify-start">
-          {/* Logo / Brand */}
-          <a
-            href="#home"
-            className="flex items-center gap-2 font-bold text-white"
-            aria-label="ThreatIntel Pro - Home"
-          >
-            <img src="/svg/logo.png" alt="logo" className="w-52 h-auto mr-10" />
-          </a>
+        {/* Parent row: each major group is its own flex item. Desktop layout visible at md: */}
+        <div className="relative mx-6 flex h-16 items-center justify-between">
+          {/* ----------------- Logo Section ----------------- */}
+          <div className="flex items-center flex-shrink-0">
+            <a href="#home" className="flex items-center gap-2 font-bold text-white" aria-label="ThreatIntel Pro - Home">
+              <img src="/svg/logo.png" alt="logo" className="w-52 h-auto" />
+            </a>
+          </div>
 
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-6 md:flex mr-36">
+          {/* ----------------- Nav Links Section (desktop only) ----------------- */}
+          <nav className="hidden md:flex md:items-center md:gap-6 md:ml-6" aria-label="Primary navigation">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -120,16 +120,48 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="secondSection text-white flex items-center justify-center gap-6 text-sm">
-            <p>Report an incedent</p>
-            <p>Talk to sales</p>
-            <p className="text-2xl">
-              <Search />
-            </p>
+          {/* Use a spacer so the utility section and CTA can be placed to the right while nav stays centered-ish.
+              On smaller screens this is invisible because nav is hidden. */}
+          <div className="hidden md:block md:flex-1" />
+
+          {/* ----------------- Utility Actions Section (desktop only) ----------------- */}
+          <div className="hidden md:flex md:items-center md:gap-6 md:mr-4 text-white text-sm">
+            <button
+              type="button"
+              className="text-sm text-gray-200 hover:text-white transition px-2 py-1 rounded"
+              aria-label="Report an incident"
+              onClick={() => {
+                // optionally handle client-side navigation or analytics
+                const el = document.querySelector("#report");
+                if (el instanceof HTMLElement) el.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Report an incident
+            </button>
+
+            <button
+              type="button"
+              className="text-sm text-gray-200 hover:text-white transition px-2 py-1 rounded"
+              aria-label="Talk to sales"
+              onClick={() => {
+                const el = document.querySelector("#sales");
+                if (el instanceof HTMLElement) el.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              Talk to sales
+            </button>
+
+            <button
+              type="button"
+              className="rounded p-1 hover:bg-white/10 transition"
+              aria-label="Search"
+            >
+              <Search className="h-5 w-5 text-gray-200" />
+            </button>
           </div>
 
-          {/* CTA (desktop) */}
-          <div className="hidden md:block ml-10">
+          {/* ----------------- Sign In CTA Section (desktop only) ----------------- */}
+          <div className="hidden md:flex md:items-center md:ml-4">
             <a
               href="#cta"
               className="rounded bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"
@@ -138,19 +170,21 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-white/10 md:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* ----------------- Mobile: hamburger toggle (always visible on small) ----------------- */}
+          <div className="ml-2 md:hidden">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-white/10"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu (hamburger) */}
         <AnimatePresence>
           {open && (
             <motion.nav
@@ -158,7 +192,7 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ type: "tween", duration: 0.25 }}
+              transition={{ type: "tween", duration: 0.22 }}
               className="md:hidden border-t border-white/10"
             >
               <ul className="flex flex-col gap-2 px-4 py-4">
@@ -178,7 +212,36 @@ export default function Navbar() {
                     </a>
                   </motion.li>
                 ))}
-                <li className="pt-2">
+
+                {/* Mobile utility actions */}
+                <li className="pt-2 border-t border-white/5 mt-2">
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href="#report"
+                      onClick={() => setOpen(false)}
+                      className="block rounded px-3 py-2 text-base text-gray-200 hover:bg-white/10 hover:text-white"
+                    >
+                      Report an incident
+                    </a>
+                    <a
+                      href="#sales"
+                      onClick={() => setOpen(false)}
+                      className="block rounded px-3 py-2 text-base text-gray-200 hover:bg-white/10 hover:text-white"
+                    >
+                      Talk to sales
+                    </a>
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-2 rounded px-3 py-2 text-base text-gray-200 hover:bg-white/10 hover:text-white"
+                      aria-label="Search"
+                    >
+                      <Search className="h-5 w-5" />
+                      Search
+                    </button>
+                  </div>
+                </li>
+
+                <li className="pt-4">
                   <a
                     href="#cta"
                     onClick={() => setOpen(false)}
