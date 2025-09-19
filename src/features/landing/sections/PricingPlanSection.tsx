@@ -2,85 +2,53 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
-type Plan = {
-  name: string;
-  price: string;
-  frequency: string;
-  description: string;
-  features: string[];
-  popular: boolean;
-};
+type Props = {};
 
-const plans: Plan[] = [
-  {
-    name: "Starter",
-    price: "$29",
-    frequency: "per month",
-    description: "Ideal for small teams and startups.",
-    features: [
-      "Up to 5 users",
-      "Basic threat detection",
-      "Email support",
-      "Standard integrations",
-    ],
-    popular: false,
-  },
-  {
-    name: "Professional",
-    price: "$79",
-    frequency: "per month",
-    description: "Perfect for growing security teams.",
-    features: [
-      "Up to 25 users",
-      "Real-time threat intelligence",
-      "Priority email & chat support",
-      "All integrations included",
-      "Customizable dashboards",
-    ],
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Contact Us",
-    frequency: "",
-    description: "Tailored solutions for large organizations.",
-    features: [
-      "Unlimited users",
-      "Dedicated account manager",
-      "Custom integrations & SLAs",
-      "Advanced analytics & reporting",
-      "On-site training & support",
-    ],
-    popular: false,
-  },
-];
+/**
+ * ContactSection
+ *
+ * - Replaces the earlier pricing cards — only the contact/overview section remains.
+ * - Keeps original visual styling: angled shimmer, gradient corner glows, motion.
+ * - Overview text + features list + bottom CTA(s).
+ *
+ * Customize:
+ * - Replace sales@paritybit.com with your real support/sales address.
+ * - Change the /purchase route if you have a different purchase flow.
+ */
 
-// Motion variants (distinct from your other sections)
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.08 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.06 },
   },
 };
 
-const cardVar = {
-  hidden: { opacity: 0, y: 16, rotateX: -6, scale: 0.97 },
-  show: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 110, damping: 16 },
-  },
+const fadeUp = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120, damping: 16 } },
 };
 
-export default function PricingPlanSection() {
+export default function PricingPlanSection(_: Props) {
+  const router = useRouter();
+
+  const handleRequestDemo = () => {
+    // opens user's default mail client — change email as required
+    window.location.href = "mailto:sales@paritybit.com?subject=ParityBit%20Demo%20Request";
+  };
+
+  const handlePurchase = () => {
+    // Navigate to purchase page — change route as necessary
+    router.push("/purchase");
+  };
+
   return (
     <section
-      id="pricing"
+      id="contact"
       className="relative py-28 px-6 md:px-10 lg:px-16 scroll-mt-20"
+      aria-labelledby="contact-heading"
     >
       {/* Background: angled shimmer stripes */}
       <div
@@ -91,6 +59,7 @@ export default function PricingPlanSection() {
             "repeating-linear-gradient( -30deg, rgba(99,102,241,0.04) 0px, rgba(99,102,241,0.04) 8px, transparent 8px, transparent 26px )",
         }}
       />
+
       {/* soft gradient corners */}
       <div
         aria-hidden
@@ -101,24 +70,24 @@ export default function PricingPlanSection() {
         className="absolute -bottom-28 right-0 h-72 w-72 rounded-full blur-3xl bg-gradient-to-tr from-purple-600/20 to-blue-600/20 -z-10"
       />
 
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-4xl">
         <motion.h2
+          id="contact-heading"
           initial={{ opacity: 0, y: -12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
+          className="text-4xl md:text-5xl leading-tight font-semibold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
         >
-          Transparent Pricing & Plans
+          Contact Sales & Request a Demo
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
-          className="text-gray-300 max-w-3xl mx-auto text-center mt-3 mb-14"
+          className="text-gray-300 max-w-3xl mx-auto text-center mt-3 mb-10 py-6"
         >
-          Choose the plan that fits your organization’s needs — scalable,
-          flexible, and transparent pricing to maximize your security ROI.
+          Learn how ParityBit’s AI-driven cybersecurity platform can scale your security operations, reduce manual effort, and increase detection fidelity. Below is a concise overview of what this offering covers — if it looks like a fit, request a demo or reach out to discuss licensing and enterprise options.
         </motion.p>
 
         <motion.div
@@ -126,118 +95,71 @@ export default function PricingPlanSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="grid gap-8 md:grid-cols-3"
+          className="bg-white/[0.03] border border-white/8 rounded-2xl p-8 md:p-12 shadow-lg"
         >
-          {plans.map(
-            ({ name, price, frequency, description, features, popular }) => {
-              const Card = (
-                <motion.div
-                  variants={cardVar}
-                  whileHover={{
-                    y: -6,
-                    rotateX: 0.6,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.35)",
-                  }}
-                  transition={{ type: "spring", stiffness: 200, damping: 18 }}
-                  className={[
-                    "relative rounded-2xl p-8",
-                    "border border-white/10 bg-white/[0.04] backdrop-blur-md",
-                    "shadow-xl transform-gpu",
-                    "min-h-[560px]", // ✅ consistent card height
-                    popular ? "ring-1 ring-transparent" : "",
-                  ].join(" ")}
-                >
-                  {/* gradient ring for popular */}
-                  {popular && (
-                    <div className="pointer-events-none absolute inset-0 rounded-2xl z-0">
-                      <div className="absolute -inset-[1px] rounded-2xl opacity-80  blur-[2px]" />
-                    </div>
-                  )}
+          <motion.div variants={fadeUp} className="mb-6">
+            <h3 className="text-xl font-bold text-white mb-2">Overview — What the platform does</h3>
+            <p className="text-gray-300 leading-relaxed">
+              ParityBit is an AI-first cybersecurity orchestration platform that combines automated threat
+              detection, contextualized alert triage, and simulated phishing & training capabilities.
+              Its goal is to multiply analyst productivity by automating low-value tasks and surfacing
+              high-confidence incidents with recommended remediation steps.
+            </p>
+          </motion.div>
 
-                  {popular && (
-                    <div className="absolute top-4 right-4 z-20 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#0b1020] bg-gradient-to-r from-blue-400 to-purple-400 shadow">
-                      Popular
-                    </div>
-                  )}
+          <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-200 mb-3">Core Capabilities</h4>
+              <ul className="space-y-2 text-gray-300">
+                <li>• AI-driven detection & correlation (reduce alert noise)</li>
+                <li>• Phishing simulation & user risk scoring</li>
+                <li>• Automated playbooks & incident enrichment</li>
+                <li>• Integrations with SIEM, EDR, and cloud APIs</li>
+              </ul>
+            </div>
 
-                  {/* Content (extra bottom padding so button footer has space) */}
-                  <div className="relative z-10 pb-24">
-                    <h3 className="text-2xl font-bold text-white mb-1">
-                      {name}
-                    </h3>
-                    <p className="text-gray-400 mb-6">{description}</p>
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-200 mb-3">Who benefits most</h4>
+              <ul className="space-y-2 text-gray-300">
+                <li>• SOC teams seeking higher throughput</li>
+                <li>• Security leaders needing measurable ROI</li>
+                <li>• Enterprises requiring custom SLAs & integrations</li>
+                <li>• SMBs wanting managed detection capabilities</li>
+              </ul>
+            </div>
+          </motion.div>
 
-                    <div className="flex items-baseline gap-2">
-                      <div className="text-white text-4xl font-extrabold">
-                        {price}
-                      </div>
-                      {frequency && (
-                        <span className="text-sm font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                          {frequency}
-                        </span>
-                      )}
-                    </div>
+          <motion.div variants={fadeUp} className="text-gray-300 mb-10">
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-200 mb-3">What a demo includes</h4>
+            <p className="leading-relaxed">
+              A demo will include a walkthrough of the detection pipelines, live example incidents,
+              the phishing simulation dashboard, and a discussion around integration and deployment options.
+              For enterprise customers we also surface a roadmap alignment and SLA discussion.
+            </p>
+          </motion.div>
 
-                    <ul className="mt-6 space-y-3">
-                      {features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="flex items-center text-gray-300"
-                        >
-                          <svg
-                            className="mr-2 h-5 w-5 flex-shrink-0"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <defs>
-                              <linearGradient id="g-check" x1="0" x2="1">
-                                <stop offset="0%" stopColor="#3B82F6" />
-                                <stop offset="50%" stopColor="#6366F1" />
-                                <stop offset="100%" stopColor="#8B5CF6" />
-                              </linearGradient>
-                            </defs>
-                            <path
-                              d="M5 13l4 4L19 7"
-                              stroke="url(#g-check)"
-                              strokeWidth="2.2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+          {/* Button footer (aligned and fixed inside this card) */}
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+            <button
+              onClick={handleRequestDemo}
+              className="w-full rounded-full py-3 font-semibold text-white bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 shadow-lg transition-transform duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500/40"
+              aria-label="Request a demo via email"
+            >
+              Request a Demo / Contact Sales
+            </button>
 
-                  {/* ✅ Button fixed at bottom (aligned across cards) */}
-                  <div className="absolute bottom-6 left-0 right-0 px-8 z-10">
-                    <button
-                      className={[
-                        "w-full rounded-full py-3 font-semibold text-white",
-                        "bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500",
-                        "shadow-lg transition-transform duration-300",
-                        "hover:scale-[1.03] active:scale-[0.99]",
-                        "focus:outline-none focus:ring-2 focus:ring-purple-500/40",
-                      ].join(" ")}
-                    >
-                      {price === "Contact Us" ? "Contact Sales" : "Choose Plan"}
-                    </button>
-                  </div>
-                </motion.div>
-              );
+            <button
+              onClick={handlePurchase}
+              className="w-full rounded-full py-3 font-semibold text-[#0b1020] bg-white/90 shadow-lg transition-transform duration-200 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500/20"
+              aria-label="Go to purchase page"
+            >
+              Purchase / Licensing
+            </button>
+          </div>
 
-              return (
-                <div
-                  key={name}
-                  className={popular ? "md:scale-[1.02] md:-translate-y-1" : ""}
-                >
-                  {Card}
-                </div>
-              );
-            }
-          )}
+          <p className="mt-4 text-xs text-gray-400">
+            Prefer a custom SZ/POC? Reply to the demo email with your preferred date & team size and we'll set it up.
+          </p>
         </motion.div>
       </div>
     </section>

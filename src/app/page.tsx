@@ -91,7 +91,12 @@ const features: { icon: React.ReactNode; title: string; desc: string }[] = [
   },
 ];
 
-const advantages: { icon: React.ReactNode; title: string; desc: string; image: string }[] = [
+const advantages: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  image: string;
+}[] = [
   {
     icon: (
       <Globe
@@ -140,8 +145,8 @@ export default function Page() {
           className="absolute inset-0 bg-center bg-cover will-change-transform"
           style={{ backgroundImage: `url(${bgImage})` }}
           aria-hidden
-          initial={{ scale: 1.04, opacity: 0.95 }}
-          animate={{ scale: [1.04, 1, 1.02], rotate: [0, 0.2, -0.2, 0] }}
+          initial={{ opacity: 0.95 }}
+          animate={{ rotate: [0, 0.2, -0.2, 0] }}
           transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
         />
 
@@ -149,7 +154,7 @@ export default function Page() {
         <CyberGridBackground />
 
         <motion.div
-          className="absolute left-0 right-0 mx-auto w-full max-w-4xl px-4 z-10 text-center"
+          className="absolute left-0 right-0 mx-auto w-full max-w-5xl px-4 z-10 text-center"
           style={{ top: "var(--icon-offset)" }}
           variants={heroContainer}
           initial="hidden"
@@ -159,19 +164,26 @@ export default function Page() {
             className="text-2xl font-sans sm:text-6xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg"
             variants={heroItem}
           >
-            ThreatAtlas Pro
+            ThreatAtlas
           </motion.h1>
 
           <motion.h2
-            className="text-5xl sm:text-3xl font-bold mb-8 leading-snug bg-clip-text text-transparent"
-            style={{ backgroundImage: "linear-gradient(90deg,#5E17EB,#3b82f6)" }}
+            className="text-6xl sm:text-5xl font-semibold mb-8 leading-snug bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, #7C3AED 0%, #8B5CF6 50%, #A78BFA 100%)",
+            }}
             variants={heroItem}
           >
             Actionable Threat Intelligence, Simplified.
           </motion.h2>
 
-          <motion.p className="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed" variants={heroItem}>
-            Empower your security team to detect, analyze, and respond to cyber threats before they impact your organization.
+          <motion.p
+            className="text-xl sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+            variants={heroItem}
+          >
+            Empower your security team to detect, analyze, and respond to cyber
+            threats before they impact your organization.
           </motion.p>
 
           <div className="flex items-center justify-center gap-4">
@@ -181,12 +193,12 @@ export default function Page() {
               {...hoverEffect}
               variants={heroItem}
             >
-              Request a Demo
+              Request Demo
             </motion.a>
 
             <motion.a
               href="#cta"
-              className="inline-block ml-4 border-2 border-purple-900/40 px-4 py-3 rounded font-semibold text-white text-md transition-transform shadow-lg"
+              className="inline-block ml-4 border-2 border-[#5E17EB] px-5 py-3 rounded font-semibold text-white text-md transition-transform shadow-lg"
               {...hoverEffect}
               variants={heroItem}
             >
@@ -208,6 +220,10 @@ export default function Page() {
           }
         `}</style>
       </motion.section>
+
+      <section id="products">
+        <ThreatSection />
+      </section>
 
       {/* Features / Advantages */}
       <section id="features" className="py-20 px-4">
@@ -252,16 +268,24 @@ export default function Page() {
           {advantages.map((advantage, index) => (
             <div
               key={advantage.title}
-              className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 !== 0 ? "md:grid-flow-col-dense" : ""}`}
+              className={`grid md:grid-cols-2 gap-12 items-center ${
+                index % 2 !== 0 ? "md:grid-flow-col-dense" : ""
+              }`}
             >
               <motion.div
-                className={`w-full h-80 rounded-xl shadow-2xl overflow-hidden ${index % 2 !== 0 ? "md:col-start-2" : ""}`}
+                className={`w-full h-80 rounded-xl shadow-2xl overflow-hidden ${
+                  index % 2 !== 0 ? "md:col-start-2" : ""
+                }`}
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6 }}
               >
-                <img src={advantage.image} alt={advantage.title} className="w-full h-full object-cover" />
+                <img
+                  src={advantage.image}
+                  alt={advantage.title}
+                  className="w-full h-full object-cover"
+                />
               </motion.div>
 
               <motion.div
@@ -279,10 +303,6 @@ export default function Page() {
           ))}
         </div>
       </motion.section>
-
-      <section id="products">
-        <ThreatSection />
-      </section>
 
       <section id="services">
         <CyberServicesSection />
