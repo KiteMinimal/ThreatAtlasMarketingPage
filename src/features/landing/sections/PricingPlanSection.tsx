@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-
-type Props = {};
 
 /**
  * ContactSection
@@ -31,18 +29,19 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120, damping: 16 } },
 };
 
-export default function PricingPlanSection(_: Props) {
+export default function PricingPlanSection() {
   const router = useRouter();
 
-  const handleRequestDemo = () => {
+  // useCallback ensures React is used (avoids unused-import lint), and gives stable references.
+  const handleRequestDemo = React.useCallback(() => {
     // opens user's default mail client — change email as required
     window.location.href = "mailto:sales@paritybit.com?subject=ParityBit%20Demo%20Request";
-  };
+  }, []);
 
-  const handlePurchase = () => {
+  const handlePurchase = React.useCallback(() => {
     // Navigate to purchase page — change route as necessary
     router.push("/purchase");
-  };
+  }, [router]);
 
   return (
     <section
@@ -78,7 +77,7 @@ export default function PricingPlanSection(_: Props) {
           viewport={{ once: true, amount: 0.4 }}
           className="text-4xl md:text-5xl leading-tight font-semibold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
         >
-          Contact Sales & Request a Demo
+          Contact Sales &amp; Request a Demo
         </motion.h2>
 
         <motion.p
@@ -87,7 +86,9 @@ export default function PricingPlanSection(_: Props) {
           viewport={{ once: true, amount: 0.5 }}
           className="text-gray-300 max-w-3xl mx-auto text-center mt-3 mb-10 py-6"
         >
-          Learn how ParityBit’s AI-driven cybersecurity platform can scale your security operations, reduce manual effort, and increase detection fidelity. Below is a concise overview of what this offering covers — if it looks like a fit, request a demo or reach out to discuss licensing and enterprise options.
+          Learn how ParityBit&apos;s AI-driven cybersecurity platform can scale your security operations, reduce
+          manual effort, and increase detection fidelity. Below is a concise overview of what this offering covers — if
+          it looks like a fit, request a demo or reach out to discuss licensing and enterprise options.
         </motion.p>
 
         <motion.div
@@ -100,10 +101,10 @@ export default function PricingPlanSection(_: Props) {
           <motion.div variants={fadeUp} className="mb-6">
             <h3 className="text-xl font-bold text-white mb-2">Overview — What the platform does</h3>
             <p className="text-gray-300 leading-relaxed">
-              ParityBit is an AI-first cybersecurity orchestration platform that combines automated threat
-              detection, contextualized alert triage, and simulated phishing & training capabilities.
-              Its goal is to multiply analyst productivity by automating low-value tasks and surfacing
-              high-confidence incidents with recommended remediation steps.
+              ParityBit is an AI-first cybersecurity orchestration platform that combines automated threat detection,
+              contextualized alert triage, and simulated phishing &amp; training capabilities. Its goal is to multiply
+              analyst productivity by automating low-value tasks and surfacing high-confidence incidents with recommended
+              remediation steps.
             </p>
           </motion.div>
 
@@ -111,9 +112,9 @@ export default function PricingPlanSection(_: Props) {
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-200 mb-3">Core Capabilities</h4>
               <ul className="space-y-2 text-gray-300">
-                <li>• AI-driven detection & correlation (reduce alert noise)</li>
-                <li>• Phishing simulation & user risk scoring</li>
-                <li>• Automated playbooks & incident enrichment</li>
+                <li>• AI-driven detection &amp; correlation (reduce alert noise)</li>
+                <li>• Phishing simulation &amp; user risk scoring</li>
+                <li>• Automated playbooks &amp; incident enrichment</li>
                 <li>• Integrations with SIEM, EDR, and cloud APIs</li>
               </ul>
             </div>
@@ -123,7 +124,7 @@ export default function PricingPlanSection(_: Props) {
               <ul className="space-y-2 text-gray-300">
                 <li>• SOC teams seeking higher throughput</li>
                 <li>• Security leaders needing measurable ROI</li>
-                <li>• Enterprises requiring custom SLAs & integrations</li>
+                <li>• Enterprises requiring custom SLAs &amp; integrations</li>
                 <li>• SMBs wanting managed detection capabilities</li>
               </ul>
             </div>
@@ -132,9 +133,9 @@ export default function PricingPlanSection(_: Props) {
           <motion.div variants={fadeUp} className="text-gray-300 mb-10">
             <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-200 mb-3">What a demo includes</h4>
             <p className="leading-relaxed">
-              A demo will include a walkthrough of the detection pipelines, live example incidents,
-              the phishing simulation dashboard, and a discussion around integration and deployment options.
-              For enterprise customers we also surface a roadmap alignment and SLA discussion.
+              A demo will include a walkthrough of the detection pipelines, live example incidents, the phishing simulation
+              dashboard, and a discussion around integration and deployment options. For enterprise customers we also surface
+              a roadmap alignment and SLA discussion.
             </p>
           </motion.div>
 
@@ -158,7 +159,7 @@ export default function PricingPlanSection(_: Props) {
           </div>
 
           <p className="mt-4 text-xs text-gray-400">
-            Prefer a custom SZ/POC? Reply to the demo email with your preferred date & team size and we'll set it up.
+            Prefer a custom SZ/POC? Reply to the demo email with your preferred date &amp; team size and we&apos;ll set it up.
           </p>
         </motion.div>
       </div>
