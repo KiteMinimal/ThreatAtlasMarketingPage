@@ -138,7 +138,7 @@ export default function TestimonialsSection() {
         initial={{ opacity: 0, y: -12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
-        className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent mb-14"
+          className="text-3xl md:text-4xl font-semibold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent mb-14"
       >
         What Our Clients Say
       </motion.h2>
@@ -170,7 +170,7 @@ export default function TestimonialsSection() {
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-white/10"
               />
               <div>
-                <p className="font-semibold text-white">{t.name}</p>
+                  <p className="font-semibold text-white">{t.name}</p>
                 <p className="text-sm text-gray-400">{t.role}</p>
               </div>
             </div>

@@ -102,8 +102,8 @@ export default function Navbar() {
         <div className="relative mx-6 flex h-16 items-center justify-between">
           {/* ----------------- Logo Section ----------------- */}
           <div className="flex items-center flex-shrink-0">
-            <a href="#home" className="flex items-center gap-2 font-bold text-white" aria-label="ThreatIntel Pro - Home">
-              <img src="/svg/logo.png" alt="logo" className="w-52 h-auto" />
+            <a href="#home" className="flex items-center gap-2 font-semibold text-white" aria-label="ThreatIntel Pro - Home">
+              <img src="/svg/logo.png" alt="logo" className="w-40 h-16" />
             </a>
           </div>
 

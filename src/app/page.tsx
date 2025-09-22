@@ -125,13 +125,13 @@ export default function Page() {
       <Navbar />
 
       <motion.section
-        className="relative px-4 text-center min-h-screen flex flex-col justify-start overflow-hidden"
+        id="home"
+        className="relative px-4 text-center min-h-screen flex items-center justify-center overflow-hidden"
         variants={fadeIn}
         initial="hidden"
         animate="show"
-        id="home"
-        style={{ "--icon-offset": iconOffset } as React.CSSProperties}
       >
+        {/* Background image (subtle rotation) */}
         <motion.div
           className="absolute inset-0 bg-center bg-cover will-change-transform"
           style={{ backgroundImage: `url(${bgImage})` }}
@@ -141,20 +141,22 @@ export default function Page() {
           transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
         />
 
+        {/* Gradient overlay */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/60 via-black/25 to-black/70" />
         <CyberGridBackground />
 
+        {/* Centered content container */}
         <motion.div
-          className="absolute left-0 right-0 mx-auto w-full max-w-5xl px-4 z-10 text-center"
-          style={{ top: "var(--icon-offset)" }}
+          className="relative z-10 w-full max-w-7xl px-4 text-center flex flex-col items-center"
           variants={heroContainer}
           initial="hidden"
           animate="show"
         >
+          {/* Logo - made smaller and responsive */}
           <motion.img
             src="/images/logo-placeholder.png"
             alt="ThreatAtlas logo"
-            className="mx-auto w-24 sm:w-28 md:w-36 lg:w-44 h-auto mb-4"
+            className="mx-auto w-16 sm:w-20 md:w-24 lg:w-28 h-auto mb-4"
             variants={heroItem}
             initial="hidden"
             whileInView="show"
@@ -163,21 +165,19 @@ export default function Page() {
 
           {/* Glossy white text effect with shine animation */}
           <motion.h1
-            className="relative text-2xl font-sans sm:text-6xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg overflow-hidden"
+            className="relative text-3xl sm:text-5xl md:text-6xl font-semibold mb-4 leading-tight drop-shadow-lg overflow-hidden"
             variants={heroItem}
           >
-            <span
-              className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white animate-shine"
-            >
+            <span className="relative inline-block text-transparent text-2xl bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white animate-shine">
               ThreatAtlas
             </span>
           </motion.h1>
 
           <motion.h2
-            className="text-6xl sm:text-5xl font-semibold mb-8 leading-snug bg-clip-text text-transparent"
+            className="text-xl sm:text-4xl md:text-6xl font-semibold mb-6 leading-snug bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(90deg, #7C3AED 0%, #8B5CF6 50%, #A78BFA 100%)",
+                "linear-gradient(90deg, #ffffff 0%, #ffffff 50%, #ffffff 100%)",
             }}
             variants={heroItem}
           >
@@ -185,7 +185,7 @@ export default function Page() {
           </motion.h2>
 
           <motion.p
-            className="text-xl sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg sm:text-base max-w-7xl mx-auto mb-8 leading-relaxed"
             variants={heroItem}
           >
             Empower your security team to detect, analyze, and respond to cyber
@@ -194,7 +194,7 @@ export default function Page() {
 
           <div className="flex items-center justify-center gap-4">
             <motion.a
-              href="#cta"
+              href="#demoform"
               className="inline-block bg-[#5E17EB] px-4 py-3 rounded font-semibold text-white text-md transition-transform shadow-lg"
               {...hoverEffect}
               variants={heroItem}
@@ -208,32 +208,27 @@ export default function Page() {
               {...hoverEffect}
               variants={heroItem}
             >
-              Learn More
+              Download Brochure
             </motion.a>
           </div>
         </motion.div>
 
         <style>{`
-          @keyframes shine {
-            0% { background-position: -200% center; }
-            50% { background-position: 200% center; }
-            100% { background-position: 200% center; }
-          }
-          .animate-shine {
-            background-size: 200% auto;
-            animation: shine 3s linear infinite;
-          }
-          @media (min-width: 1280px) {
-            :root { --icon-offset: ${iconOffset}; }
-          }
-          @media (max-width: 1279px) and (min-width: 768px) {
-            :root { --icon-offset: calc(${iconOffset} * 0.82); }
-          }
-          @media (max-width: 767px) {
-            :root { --icon-offset: calc(${iconOffset} * 0.62); }
-            .text-5xl { font-size: 2.25rem; }
-          }
-        `}</style>
+    @keyframes shine {
+      0% { background-position: -200% center; }
+      50% { background-position: 200% center; }
+      100% { background-position: 200% center; }
+    }
+    .animate-shine {
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
+    }
+
+    /* Responsive tweak for very small screens */
+    @media (max-width: 767px) {
+      .text-5xl { font-size: 2.25rem; }
+    }
+  `}</style>
       </motion.section>
 
       <section id="products">
@@ -311,7 +306,7 @@ export default function Page() {
                 transition={{ duration: 0.6 }}
               >
                 <div className="mb-4">{advantage.icon}</div>
-                <h3 className="text-3xl font-bold mb-4">{advantage.title}</h3>
+                <h3 className="text-3xl font-semibold mb-4">{advantage.title}</h3>
                 <p className="text-lg text-gray-400">{advantage.desc}</p>
               </motion.div>
             </div>

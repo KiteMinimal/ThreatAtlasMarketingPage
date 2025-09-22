@@ -62,7 +62,7 @@ export default function LeadersReview() {
     <section className="w-full bg-black text-white py-2 mt-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading */}
-        <h2 className="text-center text-4xl md:text-5xl font-bold tracking-tight mb-12">
+  <h2 className="text-center text-4xl md:text-5xl font-semibold tracking-tight mb-12">
           Trusted by{" "}
           <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Security{" "}

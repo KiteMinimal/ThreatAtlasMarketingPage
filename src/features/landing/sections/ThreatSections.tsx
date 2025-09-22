@@ -67,11 +67,11 @@ export default function Page() {
               <button
                 key={t}
                 onClick={() => setActive(t)}
-                className={`flex-shrink-0 text-sm md:text-base px-4 md:px-5 py-2 md:py-3 whitespace-nowrap font-medium focus:outline-none shadow-sm
+                className={`flex-shrink-0 text-sm md:text-base px-4 md:px-5 py-2 md:py-3 whitespace-nowrap focus:outline-none shadow-sm
                   ${
                     t === active
                       ? "bg-[#2a2a2a] rounded-xl text-white shadow-lg"
-                      : "text-gray-300 hover:bg-[#2a2a2a] rounded-xl"
+                      : "text-gray-400 hover:bg-[#2a2a2a] rounded-xl hover:text-white"
                   }`}
                 aria-pressed={t === active}
               >
@@ -88,7 +88,7 @@ export default function Page() {
         <div className="max-w-3xl text-center mb-10">
           {active === "Dark web" ? (
             <p className="text-gray-200 text-base sm:text-lg md:text-base leading-relaxed">
-              <strong className="text-violet-900">
+              <strong className="">
                 ThreatAtlas <u>Unified Risk Platform</u>
               </strong>{" "}
               boasts the industry’s largest library of <u>dark web data</u>{" "}
@@ -99,9 +99,9 @@ export default function Page() {
             </p>
           ) : (
             <p className="text-gray-200 text-base  sm:text-lg md:text-base leading-relaxed">
-              <strong className="text-violet-900">{active}</strong> — short
+              <strong className="">{active}</strong> — short
               placeholder content for the{" "}
-              <em className="text-violet-900">{active}</em> tab. Replace with
+              <em className="">{active}</em> tab. Replace with
               the real module or component for each tab. The active tab controls
               which content block is shown here.
             </p>

@@ -67,7 +67,7 @@ export default function DemoForm() {
 
           {/* Purple gradient subtitle */}
           <h2
-            className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent"
+            className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold bg-clip-text text-transparent"
             style={{
               backgroundImage:
                 "linear-gradient(90deg,#c5a6ff 0%, #7c3aed 50%, #4b1ad6 100%)",
@@ -211,7 +211,7 @@ export default function DemoForm() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="inline-flex items-center justify-center px-12 py-3 bg-[#5515D4] rounded-full text-white font-medium shadow-[0_10px_30px_rgba(124,58,237,0.25)] transition-transform active:scale-[0.99] disabled:opacity-60"
+                className="inline-flex items-center justify-center px-12 py-3 bg-[#5515D4] rounded-full text-white font-semibold shadow-[0_10px_30px_rgba(124,58,237,0.25)] transition-transform active:scale-[0.99] disabled:opacity-60"
               >
                 {submitting ? "Submitting..." : "Submit"}
               </button>

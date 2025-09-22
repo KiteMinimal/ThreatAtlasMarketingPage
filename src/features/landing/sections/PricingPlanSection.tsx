@@ -99,7 +99,7 @@ export default function PricingPlanSection() {
           className="bg-white/[0.03] border border-white/8 rounded-2xl p-8 md:p-12 shadow-lg"
         >
           <motion.div variants={fadeUp} className="mb-6">
-            <h3 className="text-xl font-bold text-white mb-2">Overview — What the platform does</h3>
+            <h3 className="text-xl font-semibold text-white mb-2">Overview — What the platform does</h3>
             <p className="text-gray-300 leading-relaxed">
               ParityBit is an AI-first cybersecurity orchestration platform that combines automated threat detection,
               contextualized alert triage, and simulated phishing &amp; training capabilities. Its goal is to multiply

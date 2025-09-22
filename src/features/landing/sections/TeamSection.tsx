@@ -65,24 +65,14 @@ export default function TeamSection() {
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[48rem] rounded-full blur-3xl bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-purple-600/20 -z-10" />
       <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full blur-3xl bg-gradient-to-tr from-purple-600/20 to-blue-600/20 -z-10" />
 
-      <motion.h2
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.45 }}
-        className="text-3xl md:text-4xl font-extrabold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
+      <h2
+        className="text-3xl md:text-4xl font-semibold text-center bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent"
       >
         Meet Our Team
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        className="text-center text-gray-300/90 max-w-3xl mx-auto mt-3 mb-14"
-      >
-        A team of dedicated professionals with expertise in software
-        development, product strategy, and technical leadership.
-      </motion.p>
+      </h2>
+      <p className="text-lg text-center text-gray-300 mt-2 mb-8">
+        A team of dedicated professionals with expertise in software development, product strategy, and technical leadership.
+      </p>
 
       <motion.div
         variants={container}
@@ -118,7 +108,7 @@ export default function TeamSection() {
               </div>
             </div>
 
-            <h3 className="text-xl font-bold text-white text-center">
+                <h3 className="text-xl font-semibold text-white text-center">
               {member.name}
             </h3>
             <p className="text-sm font-medium text-center bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent mt-1">

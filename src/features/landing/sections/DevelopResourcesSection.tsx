@@ -242,7 +242,7 @@ export default function DevelopResourcesSection() {
                   </div>
 
                   <h3
-                    className="text-lg md:text-xl font-bold text-white
+                    className="text-lg md:text-xl font-semibold text-white
                                group-hover:text-transparent group-hover:bg-clip-text
                                group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:via-indigo-400 group-hover:to-purple-400
                                transition-colors"

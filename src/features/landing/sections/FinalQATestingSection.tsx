@@ -242,7 +242,7 @@ export default function FinalQATestingSection() {
             viewport={{ once: true, amount: 0.35 }}
             className="mt-14"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-center text-white/90">
+            <h3 className="text-2xl md:text-3xl font-semibold text-center text-white/90">
               Frequently Asked Questions
             </h3>
 
@@ -262,7 +262,7 @@ export default function FinalQATestingSection() {
                     >
                       <span
                         className={`
-                          text-base sm:text-lg font-medium
+                          text-base sm:text-lg font-semibold
                           bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent
                         `}
                       >

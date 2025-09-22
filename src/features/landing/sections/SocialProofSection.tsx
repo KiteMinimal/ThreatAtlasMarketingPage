@@ -283,7 +283,7 @@ export default function CustomerReviewsCarousel() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-medium text-white">
+            <h2 className="text-4xl md:text-5xl font-semibold text-white">
               Customer Reviews
             </h2>
           </div>
@@ -595,7 +595,7 @@ function AnimateModal({
             <div className="mt-6 flex justify-end">
               <button
                 onClick={onClose}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-medium"
+                className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-semibold"
               >
                 Close
               </button>
