@@ -3,11 +3,9 @@
 import React from "react";
 import {
   CyberServicesSection,
-  PricingPlanSection,
   SocialProofSection,
+  ThreatBenefitsSection,
   ThreatSection,
-  TestimonialsSection,
-  LeadersReview,
 } from "@/features/landing";
 
 import Navbar from "@/components/layout/Navbar";
@@ -24,8 +22,6 @@ import {
   Shield,
   Zap,
   KeyRound,
-  Server,
-  Globe,
 } from "lucide-react";
 import DemoForm from "@/features/landing/sections/DemoForm";
 
@@ -47,6 +43,7 @@ const heroContainer = {
     transition: { staggerChildren: 0.12, when: "beforeChildren" },
   },
 };
+
 const heroItem = {
   hidden: { opacity: 0, y: 14 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -86,38 +83,9 @@ const features: { icon: React.ReactNode; title: string; desc: string }[] = [
   },
 ];
 
-const advantages: {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-  image: string;
-}[] = [
-  {
-    icon: (
-      <Globe
-        size={40}
-        className="text-blue-400 hover:text-purple-500 transition-colors drop-shadow-[0_0_6px_rgba(99,102,241,0.6)]"
-      />
-    ),
-    title: "Unified Platform",
-    desc: "All intelligence capabilities in one interface, reducing tool fatigue and improving workflow efficiency.",
-    image: "/64b77ad612949eb7452fcee1_enterprise security.jpeg",
-  },
-  {
-    icon: (
-      <Server
-        size={40}
-        className="text-blue-400 hover:text-purple-500 transition-colors drop-shadow-[0_0_6px_rgba(99,102,241,0.6)]"
-      />
-    ),
-    title: "Real-time Analysis",
-    desc: "Get instant results with deep historical context to make faster, more informed security decisions.",
-    image: "/64b77a6f03c8ab782f8916dc_network security.jpeg",
-  },
-];
+
 
 export default function Page() {
-  const iconOffset = "300px";
   const bgImage = "/images/homeImg.jpg";
 
   return (
@@ -267,67 +235,12 @@ export default function Page() {
         </div>
       </section>
 
-      <motion.section
-        className="py-24 px-4"
-        variants={fadeIn}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        <div className="max-w-6xl mx-auto space-y-20">
-          {advantages.map((advantage, index) => (
-            <div
-              key={advantage.title}
-              className={`grid md:grid-cols-2 gap-12 items-center ${
-                index % 2 !== 0 ? "md:grid-flow-col-dense" : ""
-              }`}
-            >
-              <motion.div
-                className={`w-full h-80 rounded-xl shadow-2xl overflow-hidden ${
-                  index % 2 !== 0 ? "md:col-start-2" : ""
-                }`}
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6 }}
-              >
-                <img
-                  src={advantage.image}
-                  alt={advantage.title}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-
-              <motion.div
-                className="text-left"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="mb-4">{advantage.icon}</div>
-                <h3 className="text-3xl font-semibold mb-4">{advantage.title}</h3>
-                <p className="text-lg text-gray-400">{advantage.desc}</p>
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </motion.section>
-
       <section id="services">
         <CyberServicesSection />
       </section>
 
-      <section id="subscription-plans">
-        <PricingPlanSection />
-      </section>
-
-      <section id="testimonials">
-        <TestimonialsSection />
-      </section>
-
-      <section id="leaders-review">
-        <LeadersReview />
+      <section id="#cta">
+        <ThreatBenefitsSection />
       </section>
 
       <div className="w-full my-28 bg-gray-600" style={{ height: "1px" }} />

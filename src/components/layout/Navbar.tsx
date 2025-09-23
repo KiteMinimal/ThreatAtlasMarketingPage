@@ -73,11 +73,13 @@ export default function Navbar() {
       </a>
 
       <header
-        className={`sticky top-0 z-40 w-full border-b ${scrolled ? "border-white/10" : "border-transparent"}`}
+        className={`sticky top-0 z-40 w-full border-b ${
+          scrolled ? "border-white/10" : "border-transparent"
+        }`}
         style={{
           ...backdropStyle,
           // background: change opacity based on scroll
-          backgroundColor: scrolled ? "rgba(0,0,0,0.62)" : "transparent",
+          backgroundColor: scrolled ? "rgba(0,0,0,0.5)" : "transparent",
           // optional subtle fallback shadow when scrolled
           boxShadow: scrolled ? "0 6px 18px rgba(2,6,23,0.25)" : "none",
         }}
@@ -87,11 +89,10 @@ export default function Navbar() {
           aria-hidden
           className={`pointer-events-none absolute inset-0 select-none`}
           style={{
-            backgroundImage:
-              scrolled
-                ? // a very subtle noise/texture using svg-data-url (helps that "texture" feel)
-                  `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='1' stitchTiles='stitch' /></filter><rect width='60' height='60' filter='url(%23n)' opacity='0.02' /></svg>")`
-                : "none",
+            backgroundImage: scrolled
+              ? // a very subtle noise/texture using svg-data-url (helps that "texture" feel)
+                `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='1' stitchTiles='stitch' /></filter><rect width='60' height='60' filter='url(%23n)' opacity='0.02' /></svg>")`
+              : "none",
             opacity: scrolled ? 1 : 0,
             transition: "opacity 260ms ease",
             mixBlendMode: "overlay",
@@ -102,13 +103,20 @@ export default function Navbar() {
         <div className="relative mx-6 flex h-16 items-center justify-between">
           {/* ----------------- Logo Section ----------------- */}
           <div className="flex items-center flex-shrink-0">
-            <a href="#home" className="flex items-center gap-2 font-semibold text-white" aria-label="ThreatIntel Pro - Home">
+            <a
+              href="#home"
+              className="flex items-center gap-2 font-semibold text-white"
+              aria-label="ThreatIntel Pro - Home"
+            >
               <img src="/svg/logo.png" alt="logo" className="w-40 h-16" />
             </a>
           </div>
 
           {/* ----------------- Nav Links Section (desktop only) ----------------- */}
-          <nav className="hidden md:flex md:items-center md:gap-6 md:ml-6" aria-label="Primary navigation">
+          <nav
+            className="hidden md:flex md:items-center md:gap-6 md:ml-6"
+            aria-label="Primary navigation"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -133,7 +141,8 @@ export default function Navbar() {
               onClick={() => {
                 // optionally handle client-side navigation or analytics
                 const el = document.querySelector("#report");
-                if (el instanceof HTMLElement) el.scrollIntoView({ behavior: "smooth" });
+                if (el instanceof HTMLElement)
+                  el.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Report an incident
@@ -145,7 +154,8 @@ export default function Navbar() {
               aria-label="Talk to sales"
               onClick={() => {
                 const el = document.querySelector("#sales");
-                if (el instanceof HTMLElement) el.scrollIntoView({ behavior: "smooth" });
+                if (el instanceof HTMLElement)
+                  el.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Talk to sales
@@ -164,7 +174,8 @@ export default function Navbar() {
           <div className="hidden md:flex md:items-center md:ml-4">
             <a
               href="#cta"
-              className="rounded bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 transition"
+              className="rounded bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow 
+               border border-transparent hover:opacity-90 transition hover:bg-transparent hover:border-white"
             >
               Sign In
             </a>
