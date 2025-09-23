@@ -5,7 +5,9 @@ import {
   CyberServicesSection,
   SocialProofSection,
   ThreatBenefitsSection,
-  ThreatSection,
+  ThreatSections,
+  DemoForm,
+  IntelligenceSection
 } from "@/features/landing";
 
 import Navbar from "@/components/layout/Navbar";
@@ -23,7 +25,6 @@ import {
   Zap,
   KeyRound,
 } from "lucide-react";
-import DemoForm from "@/features/landing/sections/DemoForm";
 
 // Animation variants
 const cardStagger = {
@@ -92,6 +93,7 @@ export default function Page() {
     <div className="bg-black text-white min-h-screen flex flex-col justify-between scroll-smooth">
       <Navbar />
 
+       {/*Hero Section*/} 
       <motion.section
         id="home"
         className="relative px-4 text-center min-h-screen flex items-center justify-center overflow-hidden"
@@ -200,40 +202,11 @@ export default function Page() {
       </motion.section>
 
       <section id="products">
-        <ThreatSection />
+        <ThreatSections />
       </section>
 
-      {/* Features / Advantages */}
-      <section id="features" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={{
-              hidden: {},
-              show: {},
-            }}
-          >
-            {features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                className="bg-gray-900/50 rounded-xl p-8 shadow-lg hover:shadow-blue-500/20 transition-shadow duration-300 border border-gray-800"
-                custom={i}
-                variants={cardStagger}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.5 }}
-              >
-                <div className="mb-4">{feature.icon}</div>
-                <h4 className="text-xl font-semibold mb-2">{feature.title}</h4>
-                <p className="text-gray-400">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/*new line*/}
+      <IntelligenceSection />
 
       <section id="services">
         <CyberServicesSection />
