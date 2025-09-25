@@ -1,7 +1,6 @@
-// components/CustomerReviewsCarousel.tsx
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useMotionValue, animate, PanInfo } from "framer-motion";
 
 type Review = {
@@ -15,9 +14,6 @@ type Review = {
   company?: string;
 };
 
-/* -------------------------
-   Your testimonials data
-   ------------------------- */
 const REVIEWS: Review[] = [
   {
     id: "r1",
@@ -65,9 +61,6 @@ const REVIEWS: Review[] = [
   },
 ];
 
-/* -------------------------
-   Small helper components
-   ------------------------- */
 const Star = ({ filled = true }: { filled?: boolean }) => (
   <svg
     className={`w-4 h-4 ${filled ? "text-indigo-300" : "text-white/20"}`}
@@ -79,13 +72,9 @@ const Star = ({ filled = true }: { filled?: boolean }) => (
   </svg>
 );
 
-/* -------------------------
-   Component
-   ------------------------- */
 export default function CustomerReviewsCarousel() {
   const total = REVIEWS.length;
 
-  // Responsive visible cards: 1 mobile, 2 tablet, 3 desktop
   const [visible, setVisible] = useState<number>(() => {
     if (typeof window === "undefined") return 3;
     const w = window.innerWidth;
@@ -105,7 +94,6 @@ export default function CustomerReviewsCarousel() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // motion x in px (we animate x directly)
   const x = useMotionValue(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -115,40 +103,72 @@ export default function CustomerReviewsCarousel() {
     trackWidthPx: 0,
     minX: 0,
     maxX: 0,
+    gapPx: 0,
   });
 
-  // Active index (where the "center" or highlighted card is)
   const [index, setIndex] = useState<number>(0);
-
-  // modal state for full testimonial
   const [modalOpen, setModalOpen] = useState(false);
   const [modalReview, setModalReview] = useState<Review | null>(null);
-
-  // Autoplay control
   const pausedRef = useRef(false);
 
-  // Update dims and snap target
+  // reactive drag bounds so Framer receives updated values on rerender
+  const [dragBounds, setDragBounds] = useState<{ left: number; right: number }>(
+    { left: 0, right: 0 }
+  );
+
+  // update dims and compute correct snap targets. useLayoutEffect so we measure before paint.
   const updateDims = () => {
     const viewport = containerRef.current;
     const track = trackRef.current;
     if (!viewport || !track) return;
+
     const viewportWidth = viewport.getBoundingClientRect().width;
-    const cardWidthPx = (viewportWidth * (100 / visible)) / 100; // viewport * percentPerCard
-    const trackWidthPx = cardWidthPx * total;
+    const trackWidthPx = track.scrollWidth;
+
+    // measure first card width (accounts for paddings & borders)
+    const firstCard = track.children[0] as HTMLElement | undefined;
+    const cardWidthPx = firstCard
+      ? firstCard.getBoundingClientRect().width
+      : viewportWidth / visible;
+
+    // compute gap (flex gap)
+    const cs = window.getComputedStyle(track as Element) as any;
+    const gapStr = cs.columnGap || cs.gap || cs.rowGap || "0px";
+    const gapPx = parseFloat(gapStr) || 0;
+
     const minX = Math.min(0, viewportWidth - trackWidthPx);
     const maxX = 0;
-    dimsRef.current = { viewportWidth, cardWidthPx, trackWidthPx, minX, maxX };
 
-    // Snap to index on update
-    const centerOffset = ((visible - 1) / 2) * cardWidthPx;
-    let target = -(index * cardWidthPx) + centerOffset;
-    if (target > maxX) target = maxX;
-    if (target < minX) target = minX;
+    dimsRef.current = {
+      viewportWidth,
+      cardWidthPx,
+      trackWidthPx,
+      minX,
+      maxX,
+      gapPx,
+    };
+    setDragBounds({ left: minX, right: maxX });
+
+    // compute center target for current index
+    // spacing between cards is cardWidth + gap
+    const cardSpacing = cardWidthPx + gapPx;
+
+    if (trackWidthPx <= viewportWidth) {
+      // if everything fits, center the whole track in the viewport
+      const centered = (viewportWidth - trackWidthPx) / 2;
+      animate(x, centered, { type: "spring", stiffness: 90, damping: 18 });
+      return;
+    }
+
+    const leftPos = index * cardSpacing;
+    const target = Math.max(
+      minX,
+      Math.min(maxX, viewportWidth / 2 - (leftPos + cardWidthPx / 2))
+    );
     animate(x, target, { type: "spring", stiffness: 90, damping: 18 });
   };
 
-  // initialize and on resize
-  useEffect(() => {
+  useLayoutEffect(() => {
     updateDims();
     const onResize = () => updateDims();
     window.addEventListener("resize", onResize);
@@ -156,7 +176,7 @@ export default function CustomerReviewsCarousel() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible, index, total]);
 
-  // autoplay timer with visibility handling
+  // autoplay
   useEffect(() => {
     const interval = setInterval(() => {
       if (!pausedRef.current && document.visibilityState === "visible") {
@@ -166,71 +186,76 @@ export default function CustomerReviewsCarousel() {
     return () => clearInterval(interval);
   }, [total]);
 
-  // react to index changes (animate to snapped position)
+  // react to index changes: compute snapped position (same calc as updateDims but using stored dims)
   useEffect(() => {
-    const { cardWidthPx, minX, maxX } = dimsRef.current;
-    const centerOffset = ((visible - 1) / 2) * cardWidthPx;
+    const { cardWidthPx, gapPx, viewportWidth, trackWidthPx, minX, maxX } =
+      dimsRef.current;
     if (!cardWidthPx) return;
-    let target = -(index * cardWidthPx) + centerOffset;
-    if (target > maxX) target = maxX;
-    if (target < minX) target = minX;
+
+    const cardSpacing = cardWidthPx + gapPx;
+    if (trackWidthPx <= viewportWidth) {
+      const centered = (viewportWidth - trackWidthPx) / 2;
+      animate(x, centered, { type: "spring", stiffness: 90, damping: 18 });
+      return;
+    }
+
+    const leftPos = index * cardSpacing;
+    const target = Math.max(
+      minX,
+      Math.min(maxX, viewportWidth / 2 - (leftPos + cardWidthPx / 2))
+    );
     animate(x, target, { type: "spring", stiffness: 90, damping: 18 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
-  // prev/next helpers with clamp
   const prev = () => setIndex((i) => Math.max(0, i - 1));
   const next = () => setIndex((i) => Math.min(total - 1, i + 1));
   const goTo = (i: number) => setIndex(Math.max(0, Math.min(total - 1, i)));
 
-  // when user starts dragging, pause autoplay
   const handleDragStart = () => {
     pausedRef.current = true;
   };
 
-  // handle drag end: determine swipe offset and snap to nearest
-  const handleDragEnd = (_event: MouseEvent | PointerEvent | TouchEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    _event: MouseEvent | PointerEvent | TouchEvent,
+    info: PanInfo
+  ) => {
     const offsetX = info.offset.x;
     const velocityX = info.velocity.x;
-    const { cardWidthPx } = dimsRef.current;
+    const { cardWidthPx, gapPx, viewportWidth } = dimsRef.current;
+    const cardSpacing = cardWidthPx + gapPx;
+
     if (!cardWidthPx) {
       pausedRef.current = false;
       return;
     }
 
-    // thresholds (tuned)
-    const distanceThreshold = cardWidthPx * 0.28; // ~28% of card width
-    const velocityThreshold = 600; // px/sec
+    const distanceThreshold = cardWidthPx * 0.28;
+    const velocityThreshold = 600;
 
-    // if significant swipe left (more negative offset) -> move right (next)
     if (offsetX < -distanceThreshold || velocityX < -velocityThreshold) {
-      // calculate how many slides moved (rounded)
-      const move = Math.max(1, Math.round(Math.abs(offsetX) / cardWidthPx));
+      const move = Math.max(1, Math.round(Math.abs(offsetX) / cardSpacing));
       setIndex((i) => Math.min(total - 1, i + move));
     } else if (offsetX > distanceThreshold || velocityX > velocityThreshold) {
-      const move = Math.max(1, Math.round(Math.abs(offsetX) / cardWidthPx));
+      const move = Math.max(1, Math.round(Math.abs(offsetX) / cardSpacing));
       setIndex((i) => Math.max(0, i - move));
     } else {
-      // snap to nearest based on current x
+      // compute nearest index from current x
       const currentX = x.get();
-      const centerOffset = ((visible - 1) / 2) * cardWidthPx;
-      // compute the exact floating index from position: idxFloat = (centerOffset - currentX)/cardWidthPx
-      const idxFloat = (centerOffset - currentX) / cardWidthPx;
+      const idxFloat =
+        (viewportWidth / 2 - currentX - cardWidthPx / 2) / cardSpacing;
       const nearest = Math.round(idxFloat);
       setIndex(Math.max(0, Math.min(total - 1, nearest)));
     }
 
-    // resume autoplay shortly after drag ends
     setTimeout(() => {
       pausedRef.current = false;
     }, 350);
   };
 
-  // pause/resume on hover
   const handleMouseEnter = () => (pausedRef.current = true);
   const handleMouseLeave = () => (pausedRef.current = false);
 
-  // pause on visibility change (tab hidden)
   useEffect(() => {
     const onVisibility = () => {
       if (document.visibilityState === "hidden") pausedRef.current = true;
@@ -240,7 +265,6 @@ export default function CustomerReviewsCarousel() {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
-  // keyboard nav
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
@@ -258,7 +282,6 @@ export default function CustomerReviewsCarousel() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // click card to open modal
   const openModal = (r: Review) => {
     setModalReview(r);
     setModalOpen(true);
@@ -270,32 +293,44 @@ export default function CustomerReviewsCarousel() {
     setTimeout(() => (pausedRef.current = false), 300);
   };
 
-  // compute button disabled states for bounding
   const leftDisabled = index <= 0;
   const rightDisabled = index >= total - 1;
-
-  // percent per card
   const percentPerCard = 100 / visible;
+
+  // compute responsive chevron offsets
+  const [chevronOffset, setChevronOffset] = useState(52);
+  useEffect(() => {
+    const updateOffset = () => {
+      const w = window.innerWidth;
+      if (w < 640) setChevronOffset(24); // mobile
+      else if (w < 1024) setChevronOffset(36); // tablet
+      else setChevronOffset(52); // desktop
+    };
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, []);
 
   return (
     <>
       <section className="w-full py-20 bg-black">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Heading */}
           <div className="text-center mb-8">
             <h2 className="text-4xl md:text-5xl font-semibold text-white">
               Customer Reviews
             </h2>
           </div>
 
-          {/* carousel wrapper */}
           <div
             className="relative"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            {/* chevrons always visible */}
-            <div className="absolute inset-y-0 left-3 flex items-center z-20">
+            {/* chevrons with responsive offsets */}
+            <div
+              className="absolute inset-y-0 flex items-center z-20"
+              style={{ left: -chevronOffset }}
+            >
               <button
                 aria-label="Previous"
                 onClick={() => {
@@ -303,7 +338,7 @@ export default function CustomerReviewsCarousel() {
                   prev();
                   setTimeout(() => (pausedRef.current = false), 800);
                 }}
-                className={`p-2 rounded-full bg-white/[0.03] text-white/90 border border-white/6 hover:bg-white/[0.04] transition ${
+                className={`p-3 rounded-full bg-white/[0.04] text-white/90 border border-white/6 hover:bg-white/[0.06] transition shadow-lg ${
                   leftDisabled ? "opacity-40 cursor-not-allowed" : ""
                 }`}
                 disabled={leftDisabled}
@@ -320,7 +355,10 @@ export default function CustomerReviewsCarousel() {
               </button>
             </div>
 
-            <div className="absolute inset-y-0 right-3 flex items-center z-20">
+            <div
+              className="absolute inset-y-0 flex items-center z-20"
+              style={{ right: -chevronOffset  }}
+            >
               <button
                 aria-label="Next"
                 onClick={() => {
@@ -328,7 +366,7 @@ export default function CustomerReviewsCarousel() {
                   next();
                   setTimeout(() => (pausedRef.current = false), 800);
                 }}
-                className={`p-2 rounded-full bg-white/[0.03] text-white/90 border border-white/6 hover:bg-white/[0.04] transition ${
+                className={`p-3 cursor-pointer rounded-full bg-white/[0.04] text-white/90 border border-white/6 hover:bg-white/[0.06] transition shadow-lg ${
                   rightDisabled ? "opacity-40 cursor-not-allowed" : ""
                 }`}
                 disabled={rightDisabled}
@@ -353,19 +391,15 @@ export default function CustomerReviewsCarousel() {
               aria-roledescription="carousel"
               aria-label="Customer reviews carousel"
             >
-              {/* track - draggable */}
               <motion.div
                 ref={trackRef}
                 drag="x"
-                dragConstraints={{
-                  left: dimsRef.current.minX,
-                  right: dimsRef.current.maxX,
-                }}
+                dragConstraints={dragBounds}
                 dragElastic={0.12}
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
                 style={{ x }}
-                className="flex gap-6 will-change-transform"
+                className="flex gap-4 will-change-transform"
                 aria-live="polite"
               >
                 {REVIEWS.map((r, i) => {
@@ -405,7 +439,6 @@ export default function CustomerReviewsCarousel() {
                         }}
                         aria-label={`Open testimonial by ${r.name}`}
                       >
-                        {/* top row */}
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-md bg-gradient-to-br from-blue-900 to-indigo-900 border border-white/6 flex items-center justify-center text-white font-semibold text-sm">
@@ -428,14 +461,12 @@ export default function CustomerReviewsCarousel() {
                           </div>
                         </div>
 
-                        {/* quote */}
                         <blockquote className="mt-6 text-gray-200 text-base leading-relaxed min-h-[120px]">
                           {r.quote.length > 220
                             ? r.quote.slice(0, 220) + "…"
                             : r.quote}
                         </blockquote>
 
-                        {/* rating & read more */}
                         <div className="mt-6 flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="text-indigo-200 font-semibold text-lg">
@@ -473,7 +504,6 @@ export default function CustomerReviewsCarousel() {
               </motion.div>
             </div>
 
-            {/* dots */}
             <div className="mt-6 flex items-center justify-center gap-3">
               {REVIEWS.map((_, i) => {
                 const active = i === index;
@@ -486,7 +516,7 @@ export default function CustomerReviewsCarousel() {
                       goTo(i);
                       setTimeout(() => (pausedRef.current = false), 700);
                     }}
-                    className={`w-12 md:w-14 h-1.5 rounded-full transition-all ${
+                    className={`w-12 md:w-14 h-1.5 cursor-pointer rounded-full transition-all ${
                       active ? "bg-white" : "bg-white/10"
                     }`}
                   />
@@ -497,7 +527,6 @@ export default function CustomerReviewsCarousel() {
         </div>
       </section>
 
-      {/* Full testimonial modal */}
       <AnimateModal
         open={modalOpen}
         onClose={closeModal}
@@ -507,9 +536,6 @@ export default function CustomerReviewsCarousel() {
   );
 }
 
-/* -------------------------
-   Modal (small, accessible)
-   ------------------------- */
 function AnimateModal({
   open,
   onClose,
@@ -595,7 +621,7 @@ function AnimateModal({
             <div className="mt-6 flex justify-end">
               <button
                 onClick={onClose}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-semibold"
+                className="px-4 py-2 rounded-full bg-[#272F81] cursor-pointer text-white font-semibold"
               >
                 Close
               </button>
