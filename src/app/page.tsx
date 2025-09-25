@@ -205,9 +205,6 @@ export default function Page() {
         <ThreatSections />
       </section>
 
-      {/*new line*/}
-      <IntelligenceSection />
-
       <section id="services">
         <CyberServicesSection />
       </section>
@@ -217,6 +214,9 @@ export default function Page() {
       </section>
 
       <div className="w-full my-28 bg-gray-600" style={{ height: "1px" }} />
+
+       {/*new line*/}
+      <IntelligenceSection />
 
       <section id="demoform">
         <DemoForm />

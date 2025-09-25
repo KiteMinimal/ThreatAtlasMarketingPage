@@ -64,13 +64,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Skip link for accessibility */}
-      <a
-        href="#home"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-3 focus:py-1 focus:rounded"
-      >
-        Skip to content
-      </a>
 
       <header
         className={`sticky top-0 z-40 w-full border-b ${
@@ -173,7 +166,7 @@ export default function Navbar() {
           {/* ----------------- Sign In CTA Section (desktop only) ----------------- */}
           <div className="hidden md:flex md:items-center md:ml-4">
             <a
-              href="#cta"
+              href="#demoform"
               className="rounded bg-[#5E17EB] px-4 py-2 text-sm font-semibold text-white shadow 
                border border-transparent hover:opacity-90 transition hover:bg-transparent hover:border-white"
             >

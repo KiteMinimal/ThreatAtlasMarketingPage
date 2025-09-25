@@ -33,9 +33,9 @@ export default function ThreatIntelligencePage() {
     <main className="bg-black text-white min-h-screen flex flex-col items-center px-6 py-16">
       {/* Hero Section */}
       <section className="max-w-5xl text-center">
-        <h1 className="text-4xl md:text-5xl leading-tight font-semibold">
+        <h1 className="text-4xl md:text-5xl leading-tight">
           Transform raw{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-semibold">
+          <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
             digital threat intelligence
           </span>{" "}
           and hidden patterns into proactive defense

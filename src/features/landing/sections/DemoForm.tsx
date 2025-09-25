@@ -61,13 +61,13 @@ export default function DemoForm() {
       <div className="w-full max-w-4xl">
         {/* Heading */}
         <header className="text-center mb-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl text-white">
             Request your demo of
           </h1>
 
           {/* Purple gradient subtitle */}
           <h2
-            className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold bg-clip-text text-transparent"
+            className="mt-4 text-3xl sm:text-4xl md:text-5xl bg-clip-text text-transparent"
             style={{
               backgroundImage:
                 "linear-gradient(90deg,#c5a6ff 0%, #7c3aed 50%, #4b1ad6 100%)",

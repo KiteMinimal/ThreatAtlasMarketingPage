@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 
 export default function IntelligenceSection() {
-
-     // State to track which popup is open
+  // State to track which popup is open
   const [activePopup, setActivePopup] = useState<number | null>(null);
 
   // Dummy content for each popup (you can replace with real info)
@@ -18,29 +17,37 @@ export default function IntelligenceSection() {
   };
 
   return (
-   <>
-   {/* Content Section */}
+    <>
+      {/* Content Section */}
       <div className="relative z-10 flex flex-col items-center text-center space-y-6 px-4">
         {/* Heading */}
         <div>
           <h2 className="text-4xl leading-normal my-16 md:text-5xl max-w-5xl">
-            ThreatAtlas intelligence solution is powered by ParityBit Platform
+            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              ThreatAtlas {}
+            </span>
+            intelligence solution is powered by
+            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              {} ParityBit Platform
+            </span>
           </h2>
         </div>
 
         {/* Paragraph */}
         <div>
-          <p className="text-lg my-auto md:text-xl font-medium">Threat Intelligence</p>
+          <p className="text-lg my-auto md:text-xl font-medium">
+            Threat Intelligence
+          </p>
         </div>
       </div>
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-      <img
-        src="/images/productImage.jpg"
-        alt="Intelligence Background"
-        className="absolute w-6xl inset-0 mx-auto  object-cover object-center"
-      />
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+        <img
+          src="/images/productImage.jpg"
+          alt="Intelligence Background"
+          className="absolute w-6xl inset-0 mx-auto  object-cover object-center"
+        />
 
-    {/* Plus icons overlay */}
+        {/* Plus icons overlay */}
         {/* Plus icons overlay */}
         <div className="absolute inset-0 z-20">
           <button
@@ -96,7 +103,7 @@ export default function IntelligenceSection() {
             </div>
           </div>
         )}
-    </section>
-   </>
+      </section>
+    </>
   );
 }

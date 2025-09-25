@@ -75,7 +75,7 @@ export default function ThreatIntelligenceBenefits() {
 
       <div className="relative max-w-7xl mx-auto text-center">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold my-20">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl my-20">
           Key benefits of{" "}
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             ThreatAtlas Intelligence Platform
