@@ -132,7 +132,7 @@ export default function CustomerReviewsCarousel() {
       : viewportWidth / visible;
 
     // compute gap (flex gap)
-    const cs = window.getComputedStyle(track as Element) as any;
+    const cs = window.getComputedStyle(track as Element);
     const gapStr = cs.columnGap || cs.gap || cs.rowGap || "0px";
     const gapPx = parseFloat(gapStr) || 0;
 

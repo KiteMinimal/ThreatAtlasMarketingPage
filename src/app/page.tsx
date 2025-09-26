@@ -17,24 +17,6 @@ import CyberGridBackground from "@/components/ui/CyberGridBackground";
 import { motion } from "framer-motion";
 import { fadeIn, hoverEffect } from "@/components/Animations";
 
-import {
-  ShieldCheck,
-  Crosshair,
-  Search,
-  Shield,
-  Zap,
-  KeyRound,
-} from "lucide-react";
-
-// Animation variants
-const cardStagger = {
-  hidden: { opacity: 0, y: 40 },
-  show: (i: number = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.08, type: "spring", stiffness: 60 },
-  }),
-};
 
 // New variants for hero content stagger
 const heroContainer = {
@@ -49,40 +31,6 @@ const heroItem = {
   hidden: { opacity: 0, y: 14 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
-
-// Features data with new icons
-const features: { icon: React.ReactNode; title: string; desc: string }[] = [
-  {
-    icon: <Crosshair size={32} className="text-[#5E17EB]" />,
-    title: "IOC Reconnaissance Engine",
-    desc: "Transform suspicious indicators into actionable intelligence in seconds.",
-  },
-  {
-    icon: <ShieldCheck size={32} className="text-[#5E17EB]" />,
-    title: "Malicious IOC Detection",
-    desc: "Stop chasing false positives with our advanced validation engine.",
-  },
-  {
-    icon: <Search size={32} className="text-[#5E17EB]" />,
-    title: "Dark Web Intelligence",
-    desc: "Get early warnings of threats & compromised credentials before they strike.",
-  },
-  {
-    icon: <Shield size={32} className="text-[#5E17EB]" />,
-    title: "MITRE ATT&CK Mapping",
-    desc: "Understand how attackers operate and identify gaps in your security posture.",
-  },
-  {
-    icon: <Zap size={32} className="text-[#5E17EB]" />,
-    title: "APT Group Intelligence Hub",
-    desc: "Track adversaries targeting your industry with detailed profiles and analysis.",
-  },
-  {
-    icon: <KeyRound size={32} className="text-[#5E17EB]" />,
-    title: "Password Breach Intelligence",
-    desc: "Protect your digital identity by monitoring for exposed credentials proactively.",
-  },
-];
 
 
 
