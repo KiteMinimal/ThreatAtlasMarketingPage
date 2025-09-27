@@ -18,18 +18,18 @@ const tabs = [
 ];
 
 const tabImages: Record<string, string> = {
-  "Platform overview": "/Images/attack-matrix.png",
-  Graph: "/Images/global-maps.png",
-  "Dark web": "/Images/password-intel.png",
-  Attribution: "/Images/threat-dashboard.png",
-  "Threat landscape": "/Images/threat-dashboard.png",
-  "Data leaks": "/Images/password-intel.png",
-  Phishing: "/Images/attack-matrix.png",
-  Malware: "/Images/global-maps.png",
-  Integrations: "/Images/threat-dashboard.png",
+  "Platform overview": "/images/attack-matrix.png",
+  Graph: "/images/global-maps.png",
+  "Dark web": "/images/password-intel.png",
+  Attribution: "/images/threat-dashboard.png",
+  "Threat landscape": "/images/threat-dashboard.png",
+  "Data leaks": "/images/password-intel.png",
+  Phishing: "/images/attack-matrix.png",
+  Malware: "/images/global-maps.png",
+  Integrations: "/images/threat-dashboard.png",
 };
 
-const fallbackImage = "/Images/attack-matrix.png";
+const fallbackImage = "/images/attack-matrix.png";
 
 export default function Page() {
   const [active, setActive] = useState<string>("Dark web");
