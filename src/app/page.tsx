@@ -161,7 +161,7 @@ export default function Page() {
         <ThreatBenefitsSection />
       </section>
 
-      {/* <div className="w-full my-28 bg-gray-600" style={{ height: "1px" }} /> */}
+      <div className="my-28 " />
 
        {/*new line*/}
       <IntelligenceSection />
