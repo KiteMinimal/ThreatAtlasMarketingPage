@@ -61,7 +61,7 @@ export default function Page() {
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/60 via-black/25 to-black/70" />
-        <CyberGridBackground />
+        {/* <CyberGridBackground /> */}
 
         {/* Centered content container */}
         <motion.div

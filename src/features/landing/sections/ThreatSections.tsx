@@ -42,7 +42,7 @@ export default function Page() {
         <h1 className="mx-auto max-w-6xl leading-tight font-extralight tracking-widest">
           <span className="inline-block text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
             Comprehensive{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-semibold">
+            <span className="bg-[#5E17EB] bg-clip-text text-transparent font-semibold">
               digital threat intelligence{" "}
             </span>
             in a

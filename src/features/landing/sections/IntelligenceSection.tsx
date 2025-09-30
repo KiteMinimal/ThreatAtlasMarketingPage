@@ -28,7 +28,7 @@ export default function IntelligenceSection() {
             </span>
             intelligence solution is powered by
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              {} ParityBit Platform
+              {} ParityBit Security
             </span>
           </h2>
         </div>
@@ -47,7 +47,6 @@ export default function IntelligenceSection() {
           className="absolute w-6xl inset-0 mx-auto  object-cover object-center"
         />
 
-        {/* Plus icons overlay */}
         {/* Plus icons overlay */}
         <div className="absolute inset-0 z-20">
           <button
@@ -90,8 +89,8 @@ export default function IntelligenceSection() {
 
         {/* Popup Modal */}
         {activePopup && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60">
-            <div className="bg-white/10 rounded-lg shadow-lg max-w-md w-full p-6 text-gray-900 relative">
+          <div className="absolute inset-0 z-30 flex items-center justify-center">
+            <div className="bg-black/90 border border-[#292929] rounded-lg shadow-lg max-w-md w-full p-6 text-gray-900 relative">
               <button
                 onClick={() => setActivePopup(null)}
                 className="absolute top-2 right-2 text-white hover:text-gray-200"

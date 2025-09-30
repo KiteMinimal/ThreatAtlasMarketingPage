@@ -448,7 +448,7 @@ export default function CustomerReviewsCarousel() {
                             </div>
                             <div>
                               <div className="text-sm text-gray-300">
-                                {r.company ?? r.name}
+                                { r.name }
                               </div>
                               <div className="text-xs text-gray-400">
                                 {r.date}
