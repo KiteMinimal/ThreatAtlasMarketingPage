@@ -64,7 +64,6 @@ export default function Navbar() {
 
   return (
     <>
-
       <header
         className={`sticky top-0 z-40 w-full border-b ${
           scrolled ? "border-white/10" : "border-transparent"

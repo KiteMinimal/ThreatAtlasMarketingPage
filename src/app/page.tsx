@@ -71,7 +71,7 @@ export default function Page() {
           <motion.img
             src="/images/logo-placeholder.png"
             alt="ThreatAtlas logo"
-            className="mx-auto w-16 sm:w-20 md:w-24 lg:w-32 mt-10"
+            className="mx-auto w-16 sm:w-20 md:w-24 lg:w-32  mb-4"
             variants={heroItem}
             initial="hidden"
             whileInView="show"

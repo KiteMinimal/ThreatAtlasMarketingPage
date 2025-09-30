@@ -56,8 +56,17 @@ export default function DemoForm() {
     }
   };
 
+  const bgImage = "/images/formBackgroundImg.png";
+
   return (
-    <section className="w-full min-h-[70vh] flex items-start justify-center py-16 px-6 sm:px-8">
+    <section
+      className="w-full min-h-[70vh] flex items-start justify-center py-16 px-6 sm:px-8"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="w-full max-w-4xl">
         {/* Heading */}
         <header className="text-center mb-10">
