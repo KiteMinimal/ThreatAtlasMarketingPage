@@ -7,7 +7,7 @@ import {
   ThreatBenefitsSection,
   ThreatSections,
   DemoForm,
-  IntelligenceSection
+  IntelligenceSection,
 } from "@/features/landing";
 
 import Navbar from "@/components/layout/Navbar";
@@ -16,7 +16,6 @@ import CyberGridBackground from "@/components/ui/CyberGridBackground";
 
 import { motion } from "framer-motion";
 import { fadeIn, hoverEffect } from "@/components/Animations";
-
 
 // New variants for hero content stagger
 const heroContainer = {
@@ -32,8 +31,6 @@ const heroItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-
-
 export default function Page() {
   const bgImage = "/images/homeImg.jpg";
 
@@ -41,10 +38,10 @@ export default function Page() {
     <div className="bg-black text-white min-h-screen flex flex-col justify-between scroll-smooth">
       <Navbar />
 
-       {/*Hero Section*/} 
+      {/*Hero Section*/}
       <motion.section
         id="home"
-        className="relative px-4 text-center min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative px-4 text-center min-h-screen pt-16 flex justify-center overflow-hidden"
         variants={fadeIn}
         initial="hidden"
         animate="show"
@@ -74,7 +71,7 @@ export default function Page() {
           <motion.img
             src="/images/logo-placeholder.png"
             alt="ThreatAtlas logo"
-            className="mx-auto w-16 sm:w-20 md:w-24 lg:w-28 h-auto mb-4"
+            className="mx-auto w-16 sm:w-20 md:w-24 lg:w-32 mt-10"
             variants={heroItem}
             initial="hidden"
             whileInView="show"
@@ -163,7 +160,7 @@ export default function Page() {
 
       <div className="my-28 " />
 
-       {/*new line*/}
+      {/*new line*/}
       <IntelligenceSection />
 
       <section id="demoform">
