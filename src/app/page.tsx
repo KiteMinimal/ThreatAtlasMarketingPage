@@ -12,8 +12,6 @@ import {
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import CyberGridBackground from "@/components/ui/CyberGridBackground";
-
 import { motion } from "framer-motion";
 import { fadeIn, hoverEffect } from "@/components/Animations";
 
