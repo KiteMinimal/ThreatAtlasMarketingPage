@@ -85,7 +85,7 @@ export default function ThreatIntelligenceBenefits() {
         {/* Grid layout */}
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-left">
           {benefits.map((item, index) => (
-            <div key={index} className="flex flex-col items-center justify-center space-y-3">
+            <div key={index} className="flex flex-col items-center justify-start space-y-3">
               {/* Icon placeholder */}
               <div className="w-20 h-20 flex items-center justify-center">
                 <img src={item.url} alt={item.title} />

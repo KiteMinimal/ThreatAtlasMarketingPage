@@ -60,7 +60,7 @@ export default function DemoForm() {
 
   return (
     <section
-      className="w-full min-h-[70vh] flex items-start justify-center py-16 px-6 sm:px-8"
+      className="w-full min-h-[70vh] flex items-start justify-center py-20 px-6 sm:px-8"
       style={{
         backgroundImage: `url(${bgImage})`,
         backgroundSize: "cover",

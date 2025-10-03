@@ -87,7 +87,7 @@ export default function Page() {
         {/* Text content */}
         <div className="max-w-3xl text-center mb-10">
           {active === "Dark web" ? (
-            <p className="text-gray-200 text-base sm:text-lg md:text-base leading-relaxed">
+            <p className="mt-4 text-gray-200 text-base sm:text-lg md:text-base leading-relaxed">
               <strong className="">
                 ThreatAtlas <u>Unified Risk Platform</u>
               </strong>{" "}

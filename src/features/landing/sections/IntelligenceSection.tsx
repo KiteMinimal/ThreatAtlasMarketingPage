@@ -40,68 +40,73 @@ export default function IntelligenceSection() {
           </p>
         </div>
       </div>
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-        <img
-          src="/images/productImage.jpg"
-          alt="Intelligence Background"
-          className="absolute w-6xl inset-0 mx-auto  object-cover object-center"
-        />
+      <section className=" w-full flex items-center justify-center px-4 pb-20">
+        {/* Fixed-aspect wrapper equals the image’s native ratio */}
+        <div className="relative mx-auto w-full max-w-6xl aspect-[1725/768]">
+          {/* The image fills the wrapper without cropping */}
+          <img
+            src="/images/productImage.jpg"
+            alt="Intelligence Background"
+            className=" inset-0 object-contain"
+            draggable={false}
+          />
 
-        {/* Plus icons overlay */}
-        <div className="absolute inset-0 z-20">
+          {/* Plus icons overlay (always aligned to the same % of the image) */}
           <button
             onClick={() => setActivePopup(1)}
-            className="absolute text-3xl top-[53%] left-[20%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
+            className="absolute -translate-x-1/2 -translate-y-1/2 text-3xl top-[63%] left-[11%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
           >
             +
           </button>
           <button
             onClick={() => setActivePopup(2)}
-            className="absolute text-3xl top-[62%] left-[27%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
+            className="absolute -translate-x-1/2 -translate-y-1/2 text-3xl top-[73%] left-[21%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
           >
             +
           </button>
           <button
             onClick={() => setActivePopup(3)}
-            className="absolute text-3xl top-[71%] left-[35%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
+            className="absolute -translate-x-1/2 -translate-y-1/2 text-3xl top-[83%] left-[31%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
           >
             +
           </button>
           <button
             onClick={() => setActivePopup(4)}
-            className="absolute text-3xl top-[71%] right-[35%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
+            className="absolute -translate-x-1/2 -translate-y-1/2 text-3xl top-[83%] right-[28%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
           >
             +
           </button>
           <button
             onClick={() => setActivePopup(5)}
-            className="absolute text-3xl top-[62%] right-[27%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
+            className="absolute -translate-x-1/2 -translate-y-1/2 text-3xl top-[73%] right-[18%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
           >
             +
           </button>
           <button
             onClick={() => setActivePopup(6)}
-            className="absolute text-3xl top-[53%] right-[20%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
+            className="absolute -translate-x-1/2 -translate-y-1/2 text-3xl top-[63%] right-[8%] w-8 h-8 rounded-full bg-black text-white border flex items-center justify-center shadow-lg"
           >
             +
           </button>
-        </div>
 
-        {/* Popup Modal */}
-        {activePopup && (
-          <div className="absolute inset-0 z-30 flex items-center justify-center">
-            <div className="bg-black/90 border border-[#292929] rounded-lg shadow-lg max-w-md w-full p-6 text-gray-900 relative">
-              <button
-                onClick={() => setActivePopup(null)}
-                className="absolute top-2 right-2 text-white hover:text-gray-200"
-              >
-                ✕
-              </button>
-              <h3 className="text-white text-lg font-semibold mb-4">Details</h3>
-              <p className="text-white">{popupContent[activePopup]}</p>
+          {/* Popup lives on top of the same wrapper */}
+          {activePopup && (
+            <div className="absolute inset-0 z-30 flex items-center justify-center">
+              <div className="bg-black/90 border border-[#292929] rounded-lg shadow-lg max-w-md w-full p-6 text-gray-900 relative">
+                <button
+                  onClick={() => setActivePopup(null)}
+                  className="absolute top-2 right-2 text-white hover:text-gray-200"
+                >
+                  ✕
+                </button>
+                <h3 className="text-white text-lg font-semibold mb-4">
+                  Details
+                </h3>
+                <p className="text-white">{popupContent[activePopup]}</p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </section>
     </>
   );

@@ -313,10 +313,10 @@ export default function CustomerReviewsCarousel() {
 
   return (
     <>
-      <section className="w-full py-20 bg-black">
+      <section className="w-full py-32 bg-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-semibold text-white">
+            <h2 className="text-4xl md:text-5xl font-semibold text-white py-10">
               Customer Reviews
             </h2>
           </div>
