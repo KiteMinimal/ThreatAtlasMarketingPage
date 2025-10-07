@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   CyberServicesSection,
   SocialProofSection,
@@ -31,6 +31,11 @@ const heroItem = {
 
 export default function Page() {
   const bgImage = "/images/homeImg.jpg";
+
+  useEffect(() => {
+    // Scroll to top (hero section) whenever page is loaded or refreshed
+    window.scrollTo({ top: 0, behavior: "smooth" }); // you can use "smooth" if you prefer
+  }, []);
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col justify-between scroll-smooth">
